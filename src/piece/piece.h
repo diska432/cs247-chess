@@ -1,7 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
-#include "position.h"
-#include "chessboard.h"
+#include "../position.h"
+#include "../chessboard.h"
 
 class Piece {
   char symbol;
