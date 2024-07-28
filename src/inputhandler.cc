@@ -20,6 +20,15 @@ using namespace std;
 TODO: add helper message and aid ui for CLI
 */
 
+shared_ptr<Computer> InputHandler::createLevel(int level) {
+  switch (level) {
+    case 1:
+      return make_shared<Level1>();
+    default:
+      return make_shared<Level1>();
+  }
+}
+
 InputHandler::InputHandler(shared_ptr<Chess> game, std::shared_ptr<TextRender> textrender) : game(game), textrender(textrender) {};
 
 void InputHandler::enterSetup() {
@@ -151,28 +160,34 @@ int InputHandler::handleInput() {
     // game->getChessboard()->makeMove();
   } 
   else if (op1 == "game") {
+    if (game->getInGame()) {
+      cout << "You are already in a game. Please finish the current game before starting a new one.\n";
+    }
+
     string p1, p2;
     cin >> p1 >> p2;
 
+    string p1s = p1.substr(0, p1.size() - 1);
+    string p2s = p2.substr(0, p2.size() - 1);
+
+    int p1Int = p1.back() - '0' - 1;
     int p2Int = p2.back() - '0' - 1;
-    p2.pop_back();
 
     game->setInGame(true);
-
     if (p1 == "human" && p2 == "human") {
-      game->players.emplace('w', std::make_shared<Human>());
-      game->players.emplace('b', std::make_shared<Human>());
-    } else if (p1 == "human" && p2 == "computer") {
-      game->players.emplace('w', std::make_shared<Human>());
-      game->players.emplace('b', std::make_shared<Level1>());
+      game->players.emplace('w', make_shared<Human>());
+      game->players.emplace('b', make_shared<Human>());
+    } else if (p1 == "human" && p2s == "computer") {
+      game->players.emplace('w', make_shared<Human>());
+      game->players.emplace('b', createLevel(p2Int));
 
-    } else if (p1 == "computer" && p2 == "human") {
-      game->players.emplace('w', std::make_shared<Level1>());
-      game->players.emplace('b', std::make_shared<Human>());
+    } else if (p1s == "computer" && p2 == "human") {
+      game->players.emplace('w', createLevel(p1Int));
+      game->players.emplace('b', make_shared<Human>());
 
-    } else if (p1 == "computer" && p2 == "computer") {
-      game->players.emplace('w', std::make_shared<Level1>());
-      game->players.emplace('b', std::make_shared<Level1>());
+    } else if (p1s == "computer" && p2s == "computer") {
+      game->players.emplace('w', createLevel(p1Int));
+      game->players.emplace('b', createLevel(p2Int));
     } else {
       cout << "Invalid game type. Try again.\n";
       game->setInGame(false);
