@@ -8,6 +8,9 @@ Pawn::Pawn(char team) : Piece('p', team) {};
 
 vector<Position> Pawn::getAllMoves(Chessboard &cb, Position p) {
   vector<Position> res;
+//   Position temp{0, 0};
+//   res.push_back(temp);
+//   return res;
   bool blocked = false;
   if(cb.getSquare({p.getX(), p.getY()})->getTeam() == 'w') {
     //if position in front of the pawn is not empty
