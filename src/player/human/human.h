@@ -5,6 +5,7 @@
 
 class Human : public Player {
   public:
+    std::pair<Position, Position> getMove() override;
     Human();
 };
 
