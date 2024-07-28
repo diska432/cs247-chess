@@ -28,12 +28,17 @@ class Chess {
     void makeUndo();
 
     // Getter/setter for inSetup flag
-    void setInSetup(bool inSetup);
+    void setInSetup(bool b);
     bool getInSetup();
 
     // Getter/setter for inGame flag
-    void setInGame(bool inGame);
+    void setInGame(bool b);
     bool getInGame();
+
+    // Setup commands
+    void setupPlacePiece(Position p, std::shared_ptr<Piece> piece);
+    void setupRemovePiece(Position p);
+    void setupSetCurrTeam(char c);
 };
 
 #endif
