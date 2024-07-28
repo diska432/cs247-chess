@@ -11,13 +11,13 @@ vector<Position> Pawn::getAllMoves(Chessboard &cb, Position p) {
   bool blocked = false;
   if(cb.getSquare({p.getX(), p.getY()})->getTeam() == 'w') {
     //if position in front of the pawn is not empty
-    if(p.getX() + 1 < 8 cb.getSquare({p.getX() + 1, p.getY()})) {
+    if(p.getX() + 1 < 8 && cb.getSquare({p.getX() + 1, p.getY()})) {
         blocked = true;
     } else {
         res.push_back({p.getX() + 1, p.getY()});
     }
     //if pawn did not move yet we check for moving 2 squares
-    if(!blocked && x == 1 && !cb.getSquare({p.getX() + 2, p.getY()})) {
+    if(!blocked && p.getX() == 1 && !cb.getSquare({p.getX() + 2, p.getY()})) {
         res.push_back({p.getX() + 2, p.getY()});
     }
     //check for capture
@@ -31,13 +31,13 @@ vector<Position> Pawn::getAllMoves(Chessboard &cb, Position p) {
     }
   } else {
     //if position in front of the pawn is not empty
-    if(p.getX() - 1 >= 0 cb.getSquare({p.getX() - 1, p.getY()})) {
+    if(p.getX() - 1 >= 0  && cb.getSquare({p.getX() - 1, p.getY()})) {
         blocked = true;
     } else {
         res.push_back({p.getX() - 1, p.getY()});
     }
     //if pawn did not move yet we check for moving 2 squares
-    if(!blocked && x == 6 && !cb.getSquare({p.getX() - 2, p.getY()})) {
+    if(!blocked && p.getX() == 6 && !cb.getSquare({p.getX() - 2, p.getY()})) {
         res.push_back({p.getX() - 2, p.getY()});
     }
     //check for capture
