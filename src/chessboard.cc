@@ -70,10 +70,11 @@ void Chessboard::clearSquare(Position p) {
 }
 
 bool Chessboard::positionInRange(Position& p) const {
-  return true;
-    // p.getX() >= 0 && p.getX() < width &&
-    // p.getY() >= 0 && p.getY() < width 
-  
+  // return true;
+  return (
+    p.getX() >= 0 && p.getX() < width &&
+    p.getY() >= 0 && p.getY() < width 
+  );
 }
 
 shared_ptr<Piece> Chessboard::getSquare(Position& p) const {

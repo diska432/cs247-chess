@@ -1,5 +1,8 @@
 #include "computer.h"
+#include <memory>
 
-Computer::Computer() {
+using namespace std;
+
+Computer::Computer(shared_ptr<Chessboard> chessboard) : chessboard(chessboard) {
   isHuman = false; // it's a computer lol
 }

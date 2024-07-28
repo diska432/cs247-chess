@@ -22,10 +22,10 @@ TODO: add helper message and aid ui for CLI
 
 shared_ptr<Computer> InputHandler::createLevel(int level) {
   switch (level) {
-    case 1:
+    case 0:
       return make_shared<Level1>(game->getChessboard());
     default:
-      return make_shared<Level1>();
+      return nullptr;
   }
 }
 
@@ -165,7 +165,6 @@ int InputHandler::handleInput() {
       cout << "Invalid move. Try again.\n";
     }
 
-
     // cout << "someone moving type shi\n";
     // game->getChessboard()->makeMove();
   } 
@@ -190,7 +189,6 @@ int InputHandler::handleInput() {
     } else if (p1 == "human" && p2s == "computer") {
       game->players.emplace('w', make_shared<Human>());
       game->players.emplace('b', createLevel(p2Int));
-
     } else if (p1s == "computer" && p2 == "human") {
       game->players.emplace('w', createLevel(p1Int));
       game->players.emplace('b', make_shared<Human>());
