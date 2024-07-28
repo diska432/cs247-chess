@@ -130,7 +130,7 @@ int InputHandler::handleInput() {
     } else {
       cout << "You can't enter 'setup' mode while you are playing the game.\n";
     }
-    enterSetup();
+    
   } else if (op1 == "resign") {
     cout << "someonen resigning type sh\n";
   } else if (op1 == "move") {
