@@ -1,16 +1,17 @@
-#ifndef TEXTRENDER_H
-#define TEXTRENDER_H
+#ifndef GRAPHICRENDER_H
+#define GRAPHICRENDER_H
 #include <iostream>
 #include <memory>
 #include "render.h"
+#include "window.h"
 #include "../chessboard.h"
 #include "../piece/piece.h"
 
-class TextRender : Render {
+class GraphicRender : Render {
   private:
-    std::ostream &out;
+    Xwindow window;
   public:
-    TextRender(Chessboard* chessboard, std::ostream& out);
+    GraphicRender(Chessboard* chessboard);
     void render() override;
     std::string getChar(const std::shared_ptr<Piece>& piece) const;
 };
