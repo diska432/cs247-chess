@@ -11,7 +11,7 @@ class Piece {
 
   public:
     Piece(char symbol, char team);
-    virtual std::vector<Position>getAllMoves(Chessboard &cb) = 0;
+    virtual std::vector<Position>getAllMoves(Chessboard &cb, Position p) = 0;
     char getTeam() const;
     char getSymbol() const;
 };

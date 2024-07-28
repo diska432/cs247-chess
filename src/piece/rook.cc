@@ -6,9 +6,9 @@ using namespace std;
 
 Rook::Rook(char team) : Piece('r', team) {};
 
-vector<Position> Rook::getAllMoves(Chessboard &cb) {
+vector<Position> Rook::getAllMoves(Chessboard &cb, Position p) {
   vector<Position> res;
-  Position p{0, 0};
-  res.push_back(p);
+  Position temp{0, 0};
+  res.push_back(temp);
   return res;
 }

@@ -5,7 +5,7 @@
 class Bishop : public Piece {
   public:
     Bishop(char team);
-    std::vector<Position>getAllMoves(Chessboard &cb) override;
+    std::vector<Position>getAllMoves(Chessboard &cb, Position p) override;
 };
 
 #endif

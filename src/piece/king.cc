@@ -6,9 +6,9 @@ using namespace std;
 
 King::King(char team) : Piece('k', team) {};
 
-vector<Position> King::getAllMoves(Chessboard &cb) {
+vector<Position> King::getAllMoves(Chessboard &cb, Position p) {
   vector<Position> res;
-  Position p{0, 0};
-  res.push_back(p);
+  Position temp{0, 0};
+  res.push_back(temp);
   return res;
 }

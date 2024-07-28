@@ -6,10 +6,10 @@ using namespace std;
 
 Bishop::Bishop(char team) : Piece('b', team) {};
 
-vector<Position> Bishop::getAllMoves(Chessboard &cb) {
+vector<Position> Bishop::getAllMoves(Chessboard &cb, Position p) {
   vector<Position> res;
-  Position p{0, 0};
-  res.push_back(p);
+  Position temp{0, 0};
+  res.push_back(temp);
   return res;
 }
 

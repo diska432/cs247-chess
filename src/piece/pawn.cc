@@ -6,9 +6,9 @@ using namespace std;
 
 Pawn::Pawn(char team) : Piece('p', team) {};
 
-vector<Position> Pawn::getAllMoves(Chessboard &cb) {
+vector<Position> Pawn::getAllMoves(Chessboard &cb, Position p) {
   vector<Position> res;
-  Position p{0, 0};
-  res.push_back(p);
+  Position temp{0, 0};
+  res.push_back(temp);
   return res;
 }

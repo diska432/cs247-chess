@@ -5,7 +5,7 @@
 class Queen : public Piece {
   public:
     Queen(char team);
-    std::vector<Position>getAllMoves(Chessboard &cb) override;
+    std::vector<Position>getAllMoves(Chessboard &cb, Position p) override;
 };
 
 #endif
