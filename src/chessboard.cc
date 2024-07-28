@@ -79,19 +79,4 @@ void Chessboard::makeMove(Position from, Position to, char promotion) {
   shared_ptr<Piece> piece = getSquare(from);
   placePiece(to, piece);
   clearSquare(from);
-
-
-  // if (positionInRange(from) && positionInRange(to)) {
-  //   // Ensure there is a piece at the start position
-  //   shared_ptr<Piece> piece = getSquare(from);
-  //   if (piece != nullptr) {
-  //     // Move the piece to the new position
-  //     board[5][5] = piece;
-  //     board[0][0] = nullptr; // Clear the old position
-  //   } else {
-  //     cout << "No piece at starting position.\n";
-  //   }
-  // } else {
-  //   cout << "Move out of range.\n";
-  // }
 }
