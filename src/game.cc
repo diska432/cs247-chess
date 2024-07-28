@@ -10,16 +10,18 @@ Game::Game() : chess(make_shared<Chess>()), textrender(make_shared<TextRender>(c
 };
 
 void Game::play() {
-  for(;;) {
+  do {
     int res = input->handleInput();
 
-    if (res == 0) {
-      // game is over, so break out and print scores
-      break;
-    }
+
+    // if (res == 0) {
+    //   // game is over, so break out and print scores
+    //   break;
+    // }
 
     // if (chess->getInSetup() || chess->getInGame()) {
     textrender->render();
     // }
   }
+  while (chess->getInGame() || chess->getInSetup());
 }

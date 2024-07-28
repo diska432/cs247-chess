@@ -143,19 +143,29 @@ int InputHandler::handleInput() {
   } else if (op1 == "resign") {
     cout << "someonen resigning type sh\n";
   } else if (op1 == "move") {
-    string f, t;
-    cin >> f >> t;
-    char promotion;
+    pair<Position, Position> move = game->players[game->currTeam]->getMove();
+
+
+    // string f, t;
+    // cin >> f >> t;
+    char promotion = '_';
     if (cin.peek() != '\n') {
       cin >> promotion;
     }
     try {
-      Position from{f};
-      Position to{t};
-      game->makeMove(from, to, promotion);
+      game->makeMove(move.first, move.second, promotion);
+      game->switchTeam();
+
+      if (!game->players[game->currTeam]->isHumanPlayer()) {
+        pair<Position, Position> move = game->players[game->currTeam]->getMove();
+        game->makeMove(move.first, move.second, promotion);
+        game->switchTeam();
+      }
     } catch (exception& e) {
       cout << "Invalid move. Try again.\n";
     }
+
+
     // cout << "someone moving type shi\n";
     // game->getChessboard()->makeMove();
   } 

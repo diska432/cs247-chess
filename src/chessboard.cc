@@ -17,28 +17,28 @@ TODO: properly handle exceptions and invalid inputs
 
 Chessboard::Chessboard() : board(8, vector<shared_ptr<Piece>>(8, nullptr)) {
   for (int i=0; i<width; i++) {
-    board[1][i] = make_shared<Pawn>('w'); 
-    board[6][i] = make_shared<Pawn>('b'); 
+    board[1][i] = make_shared<Pawn>('b'); 
+    board[6][i] = make_shared<Pawn>('w'); 
   }
-  // White back-rank pieces
-  board[0][0] = make_shared<Rook>('w');
-  board[0][1] = make_shared<Knight>('w');
-  board[0][2] = make_shared<Bishop>('w');
-  board[0][3] = make_shared<Queen>('w');
-  board[0][4] = make_shared<King>('w');
-  board[0][5] = make_shared<Bishop>('w');
-  board[0][6] = make_shared<Knight>('w');
-  board[0][7] = make_shared<Rook>('w');
-  
   // Black back-rank pieces
-  board[7][0] = make_shared<Rook>('b');
-  board[7][1] = make_shared<Knight>('b');
-  board[7][2] = make_shared<Bishop>('b');
-  board[7][3] = make_shared<Queen>('b');
-  board[7][4] = make_shared<King>('b');
-  board[7][5] = make_shared<Bishop>('b');
-  board[7][6] = make_shared<Knight>('b');
-  board[7][7] = make_shared<Rook>('b');
+  board[0][0] = make_shared<Rook>('b');
+  board[0][1] = make_shared<Knight>('b');
+  board[0][2] = make_shared<Bishop>('b');
+  board[0][3] = make_shared<Queen>('b');
+  board[0][4] = make_shared<King>('b');
+  board[0][5] = make_shared<Bishop>('b');
+  board[0][6] = make_shared<Knight>('b');
+  board[0][7] = make_shared<Rook>('b');
+  
+  // White back-rank pieces
+  board[7][0] = make_shared<Rook>('w');
+  board[7][1] = make_shared<Knight>('w');
+  board[7][2] = make_shared<Bishop>('w');
+  board[7][3] = make_shared<Queen>('w');
+  board[7][4] = make_shared<King>('w');
+  board[7][5] = make_shared<Bishop>('w');
+  board[7][6] = make_shared<Knight>('w');
+  board[7][7] = make_shared<Rook>('w');
 };
 
 void Chessboard::clearBoard() {
@@ -86,6 +86,7 @@ shared_ptr<Piece> Chessboard::getSquare(Position p) const {
 }
 
 void Chessboard::makeMove(Position from, Position to, char promotion) {
+  std::cout << "Making move from " << from.getX() << "," << from.getY() << " to " << to.getX() << "," << to.getY() << std::endl;  
   shared_ptr<Piece> piece = getSquare(from);
   placePiece(to, piece);
   clearSquare(from);
