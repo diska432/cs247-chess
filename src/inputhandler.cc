@@ -1,5 +1,9 @@
 #include "inputhandler.h"
 #include "chess.h"
+
+#include "player/player.h"
+#include "player/human/human.h"
+#include "player/computer/level1.h"
 #include <memory>
 
 using namespace std;
@@ -36,7 +40,7 @@ void InputHandler::enterSetup() {
 int InputHandler::handleInput() {
   string op1;
   cin >> op1;
-
+  
   if (op1 == "setup") {
     if (!game->getInGame()) {
       // enter setup mode
@@ -63,7 +67,36 @@ int InputHandler::handleInput() {
     }
     // cout << "someone moving type shi\n";
     // game->getChessboard()->makeMove();
-  } else {
+  } 
+  else if (op1 == "game") {
+    string p1, p2;
+    cin >> p1 >> p2;
+
+    int p2Int = p2.back() - '0' - 1;
+    p2.pop_back();
+
+    game->setInGame(true);
+
+    if (p1 == "human" && p2 == "human") {
+      game->players.emplace('w', std::make_shared<Human>());
+      game->players.emplace('b', std::make_shared<Human>());
+    } else if (p1 == "human" && p2 == "computer") {
+      game->players.emplace('w', std::make_shared<Human>());
+      game->players.emplace('b', std::make_shared<Level1>());
+
+    } else if (p1 == "computer" && p2 == "human") {
+      game->players.emplace('w', std::make_shared<Level1>());
+      game->players.emplace('b', std::make_shared<Human>());
+
+    } else if (p1 == "computer" && p2 == "computer") {
+      game->players.emplace('w', std::make_shared<Level1>());
+      game->players.emplace('b', std::make_shared<Level1>());
+    } else {
+      cout << "Invalid game type. Try again.\n";
+      game->setInGame(false);
+    }
+  } 
+  else {
     if (cin.eof()) {
       return 0;
     }
