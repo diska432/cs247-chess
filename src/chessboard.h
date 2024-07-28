@@ -16,10 +16,12 @@ class Chessboard {
     int width = 8;
   public:
     Chessboard();
+    void clearBoard();
     void placePiece(Position p, std::shared_ptr<Piece> piece);
     std::shared_ptr<Piece> getSquare(Position p) const;
     void clearSquare(Position p);
     void makeMove(Position from, Position to, char promotion);
+    int getWidth() const;
 };
 
 #endif

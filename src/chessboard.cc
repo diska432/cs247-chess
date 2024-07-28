@@ -41,6 +41,16 @@ Chessboard::Chessboard() : board(8, vector<shared_ptr<Piece>>(8, nullptr)) {
   board[7][7] = make_shared<Rook>('b');
 };
 
+void Chessboard::clearBoard() {
+  for (int i=0; i<width; i++) {
+    for (int j=0; j<width; j++) {
+      board[i][j] = nullptr;
+    }
+  }
+}
+
+int Chessboard::getWidth() const { return width; };
+
 void Chessboard::placePiece(Position p, shared_ptr<Piece> piece) {
   if (!positionInRange(p)) {
     // throw some error

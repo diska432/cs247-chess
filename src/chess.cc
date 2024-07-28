@@ -11,10 +11,10 @@ shared_ptr<Chessboard> Chess::getChessboard() {
   return chessboard;
 }
 
-void Chess::setInGame(bool inGame) { inGame = inGame; };
+void Chess::setInGame(bool b) { inGame = b; };
 bool Chess::getInGame() { return inGame; };
 
-void Chess::setInSetup(bool inSetup) { inSetup = inSetup; };
+void Chess::setInSetup(bool b) { inSetup = b; };
 bool Chess::getInSetup() { return inSetup; };
 
 void Chess::switchTeam() {
@@ -23,6 +23,20 @@ void Chess::switchTeam() {
   } else if (currTeam == 'b') {
     currTeam = 'w';
   }
+}
+
+void Chess::setupPlacePiece(Position p, std::shared_ptr<Piece> piece) {
+  if (!inSetup) throw NotInSetupModeException();
+  chessboard->placePiece(p, piece);
+}
+
+void Chess::setupRemovePiece(Position p) {
+  if (!inSetup) throw NotInSetupModeException();
+  chessboard->clearSquare(p);
+}
+
+void Chess::setupSetCurrTeam(char c) {
+  currTeam = c;
 }
 
 void Chess::makeMove(Position from, Position to, char promotion) {
