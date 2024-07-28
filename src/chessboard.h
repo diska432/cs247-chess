@@ -17,6 +17,7 @@ class Chessboard {
     Chessboard();
     void placePiece(int x, int y, std::shared_ptr<Piece> piece);
     std::shared_ptr<Piece> getSquare(Position p) const;
+    void makeMove();
 };
 
 #endif

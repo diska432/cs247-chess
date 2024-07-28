@@ -1,14 +1,16 @@
 #ifndef CHESS_H
 #define CHESS_H
 #include <iostream>
+#include <memory>
 #include "chessboard.h"
 
 class Chess {
   private:
-    Chessboard chessboard;
+    std::shared_ptr<Chessboard> chessboard;
     char currTeam = 'w';
   public:
-    Chessboard* getChessboard();
+    Chess();
+    std::shared_ptr<Chessboard> getChessboard();
     void switchTeam();
 };
 

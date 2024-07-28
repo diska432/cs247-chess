@@ -55,3 +55,18 @@ shared_ptr<Piece> Chessboard::getSquare(Position p) const {
   return board[p.getX()][p.getY()];
 }
 
+void Chessboard::makeMove() {
+  if (positionInRange(Position(0, 0)) && positionInRange(Position(5, 5))) {
+    // Ensure there is a piece at the start position
+    shared_ptr<Piece> piece = board[0][0];
+    if (piece != nullptr) {
+      // Move the piece to the new position
+      board[5][5] = piece;
+      board[0][0] = nullptr; // Clear the old position
+    } else {
+      cout << "No piece at starting position.\n";
+    }
+  } else {
+    cout << "Move out of range.\n";
+  }
+}

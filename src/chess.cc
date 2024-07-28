@@ -1,7 +1,12 @@
 #include "chess.h"
+#include <memory>
 
-Chessboard* Chess::getChessboard() {
-  return &chessboard;
+using namespace std;
+
+Chess::Chess() : chessboard(std::make_shared<Chessboard>()) {}
+
+shared_ptr<Chessboard> Chess::getChessboard() {
+  return chessboard;
 }
 
 void Chess::switchTeam() {

@@ -20,7 +20,8 @@ int InputHandler::handleInput() {
   } else if (op1 == "resign") {
     cout << "someonen resigning type sh\n";
   } else if (op1 == "move") {
-    cout << "someone moving type shi\n";
+    // cout << "someone moving type shi\n";
+    game->getChessboard()->makeMove();
   } else {
     if (cin.eof()) {
       return 0;
