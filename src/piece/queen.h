@@ -4,7 +4,7 @@
 
 class Queen : public Piece {
   public:
-    Queen(char symbol, char color);
+    Queen(char team);
     std::vector<Position>getAllMoves(Chessboard &cb) override;
 };
 

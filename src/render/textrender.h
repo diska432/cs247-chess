@@ -12,7 +12,7 @@ class TextRender : Render {
   public:
     TextRender(Chessboard* board, std::ostream& out);
     void render() override;
-    char getChar(const std::shared_ptr<Piece>& piece) const;
+    std::string getChar(const std::shared_ptr<Piece>& piece) const;
 };
 
 #endif

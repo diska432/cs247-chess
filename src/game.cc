@@ -15,6 +15,5 @@ void Game::play() {
       break;
     }
     textrender.render();
-    cout << "We would render board rn\n";
   }
 }

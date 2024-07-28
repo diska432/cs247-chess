@@ -11,7 +11,7 @@ class Game {
     InputHandler input;
     TextRender textrender;
     // Render render;
-  
+    
   public: 
     Game();
     void play();

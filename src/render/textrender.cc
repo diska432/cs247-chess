@@ -19,7 +19,8 @@ void TextRender::render() {
       if (piece != nullptr) {
         cout << getChar(piece) << " ";
       } else {
-        cout << "  ";
+        cout << (isWhite(p) ? "_" : " ") << " ";
+        // cout << "  ";
       }
     }
     out << "\n";
@@ -28,37 +29,60 @@ void TextRender::render() {
 
   out << "  ";
   for (char i='a'; i<='h'; i++) {
-    out << i;
+    out << i << " ";
   }
-  out << "\n";
+  out << "\n\n";
 }
 
-char TextRender::getChar(const shared_ptr<Piece>& piece) const {
+string TextRender::getChar(const shared_ptr<Piece>& piece) const {
   char team = piece->getTeam();
   char symbol = piece->getSymbol();
 
-  if (team == 'w') {
+  if (team == 'b') {
     switch (symbol) {
       case 'p':
-        return 'P';
+        return "♙";
         break;
-      // figure out how to display everything else
       case 'r':
-        return 'R';
+        return "♖";
+        break;
+      case 'b':
+        return "♗";
+        break;
+      case 'n':
+        return "♘";
+        break;
+      case 'q':
+        return "♕";
+        break;
+      case 'k':
+        return "♔";
         break;
       default:
-        return ' ';
+        return " ";
     }
-  } else if (team == 'b') {
+  } else if (team == 'w') {
     switch (symbol) {
       case 'p':
-        return 'p';
+        return "♟";
         break;
       case 'r':
-        return 'r';
+        return "♜";
+        break;
+      case 'b':
+        return "♝";
+        break;
+      case 'n':
+        return "♞";
+        break;
+      case 'q':
+        return "♛";
+        break;
+      case 'k':
+        return "♚";
         break;
       default:
-        return ' ';
+        return " ";
     }
   }
 }
