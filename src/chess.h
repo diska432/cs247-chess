@@ -6,6 +6,8 @@
 #include "chessboard.h"
 #include "position.h"
 #include "move.h"
+#include "player/player.h"
+#include <map>
 
 class Chess {
   private:
@@ -18,6 +20,8 @@ class Chess {
   public:
     Chess();
     std::shared_ptr<Chessboard> getChessboard();
+    std::map<char, std::shared_ptr<Player>> players; // Modified line
+
     void switchTeam();
 
     void makeMove(Position from, Position to, char promotion);
