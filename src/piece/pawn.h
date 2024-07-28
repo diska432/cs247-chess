@@ -5,7 +5,7 @@
 class Pawn : public Piece {
   public:
     Pawn(char team);
-    std::vector<Position> getAllMoves(Chessboard &cb, Position p) override;
+    std::vector<Position> getAllMoves(std::shared_ptr<Chessboard>, Position) override;
     void promote();
 };
 

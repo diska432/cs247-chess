@@ -7,6 +7,8 @@ class Level1 : public Computer {
   public:
     virtual std::pair<Position, Position> getMove() override;
     Level1();
+    Level1(std::shared_ptr<Chessboard>);
+
 };
 
 #endif

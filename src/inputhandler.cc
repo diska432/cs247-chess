@@ -23,7 +23,7 @@ TODO: add helper message and aid ui for CLI
 shared_ptr<Computer> InputHandler::createLevel(int level) {
   switch (level) {
     case 1:
-      return make_shared<Level1>();
+      return make_shared<Level1>(game->getChessboard());
     default:
       return make_shared<Level1>();
   }

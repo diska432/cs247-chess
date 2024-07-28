@@ -6,7 +6,7 @@
 
 class Computer : public Player {
   protected:
-    Chessboard* chessboard;
+    std::shared_ptr<Chessboard> chessboard;
   public:
     Computer();
 };
