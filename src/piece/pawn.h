@@ -4,8 +4,8 @@
 
 class Pawn : public Piece {
   public:
-    Pawn(char symbol, char color, Position pos);
-    vector<Position>getAllMoves(Chessboard &cb) override;
+    Pawn(char team);
+    std::vector<Position> getAllMoves(Chessboard &cb) override;
     void promote();
 };
 

@@ -3,14 +3,17 @@
 #include "../position.h"
 #include "../chessboard.h"
 
+class Chessboard;
+
 class Piece {
   char symbol;
-  char color;
-  Position pos;
+  char team;
 
   public:
-    Piece(char symbol, char color, Position pos);
-    virtual vector<Position>getAllMoves(Chessboard &cb) = 0;
+    Piece(char symbol, char team);
+    virtual std::vector<Position>getAllMoves(Chessboard &cb) = 0;
+    char getTeam() const;
+    char getSymbol() const;
 };
 
 #endif

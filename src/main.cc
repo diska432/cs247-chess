@@ -1,6 +1,10 @@
 #include <iostream>
+#include "game.h"
+
+using namespace std;
 
 int main() {
-  std::cout << "Hi\n";
+  Game game;
+  game.play();
   return 0;
 }

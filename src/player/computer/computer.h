@@ -4,10 +4,9 @@
 #include "../player.h"
 #include "../../chessboard.h"
 
-
 class Computer : public Player {
   protected:
-    Chessboard* chessobard;
+    Chessboard* chessboard;
   public:
     Computer();
 };
