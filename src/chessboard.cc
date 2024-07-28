@@ -77,7 +77,7 @@ shared_ptr<Piece> Chessboard::getSquare(Position p) const {
 
 void Chessboard::makeMove(Position from, Position to, char promotion) {
   shared_ptr<Piece> piece = getSquare(from);
-  piece->getAllMoves(*this, from);
+  vector<Position> allMoves = piece->getAllMoves(*this, from);
   placePiece(to, piece);
   clearSquare(from);
 }
