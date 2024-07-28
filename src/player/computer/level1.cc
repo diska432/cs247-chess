@@ -5,8 +5,7 @@ Level1::Level1() {
 }
 
 std::pair<Position, Position> Level1::getMove() {
-  std::string f, t;
-  std::cin >> f >> t;
-  return std::make_pair(Position{f}, Position{t});
+  std::cout << "Computer is making a move" << std::endl;
+  return std::make_pair(Position{"e7"}, Position{"e6"});
 }
 
