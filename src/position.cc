@@ -3,9 +3,11 @@
 
 using namespace std;
 
+Position::Position() : x(-1), y(-1) {};
+
 Position::Position(int x, int y) : x(x), y(y) {};
 
-Position::Position(string c) : y(c[0]-'a'), x(c[1]-'1') {};
+Position::Position(string c) : x(c[1]-'1'), y(c[0]-'a') {};
 
 int Position::getX() const { return x; };
 

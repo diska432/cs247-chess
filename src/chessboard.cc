@@ -1,4 +1,5 @@
 #include "chessboard.h"
+#include "exception.h"
 #include "piece/piece.h"
 #include "piece/pawn.h"
 #include "piece/rook.h"
@@ -43,17 +44,16 @@ Chessboard::Chessboard() : board(8, vector<shared_ptr<Piece>>(8, nullptr)) {
 void Chessboard::placePiece(Position p, shared_ptr<Piece> piece) {
   if (!positionInRange(p)) {
     // throw some error
-    cout << "Yo not in range ( we will be throwing an error here eventually )\n";
+    throw InvalidMoveException();
   } else {
     board[p.getX()][p.getY()] = piece;
   }
-  // board[x][y] = piece;
 }
 
 void Chessboard::clearSquare(Position p) {
   if (!positionInRange(p)) {
     // throw some error
-    cout << "Yo not in range ( we will be throwing an error here eventually )\n";
+    throw InvalidMoveException();
   } else {
     board[p.getX()][p.getY()] = nullptr;
   }
@@ -69,7 +69,7 @@ bool Chessboard::positionInRange(Position p) const {
 shared_ptr<Piece> Chessboard::getSquare(Position p) const {
   if (!positionInRange(p)) {
     // throw some error
-    cout << "Yo not in range ( we will be throwing an error here eventually )\n";
+    throw InvalidMoveException();
   } else {
     return board[p.getX()][p.getY()];
   }

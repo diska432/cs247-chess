@@ -2,12 +2,15 @@
 #define CHESS_H
 #include <iostream>
 #include <memory>
+#include <stack>
 #include "chessboard.h"
 #include "position.h"
+#include "move.h"
 
 class Chess {
   private:
     std::shared_ptr<Chessboard> chessboard;
+    std::shared_ptr<std::stack<AtomicMove>> moves;
     char currTeam = 'w';
 
     bool inSetup = false;
@@ -16,7 +19,9 @@ class Chess {
     Chess();
     std::shared_ptr<Chessboard> getChessboard();
     void switchTeam();
+
     void makeMove(Position from, Position to, char promotion);
+    void makeUndo();
 
     // Getter/setter for inSetup flag
     void setInSetup(bool inSetup);

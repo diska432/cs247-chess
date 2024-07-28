@@ -1,5 +1,6 @@
 #include "chess.h"
 #include "position.h"
+#include "move.h"
 #include <memory>
 
 using namespace std;
@@ -25,7 +26,25 @@ void Chess::switchTeam() {
 }
 
 void Chess::makeMove(Position from, Position to, char promotion) {
+  /*
+  Castle?
+  En passent?
+  Capture?
+  Move?
+  */
   chessboard->makeMove(from, to, promotion);
+
 }
 
-
+void Chess::makeUndo() {
+  if (moves->size() == 0) {
+    // No moves made, so we cannot undo anymore
+    throw InvalidMoveException();
+  } else {
+    // we should be able to do an undo
+    cout << "we still have to implement this\n";
+    // AtomicMove lastMove = moves->top();
+    // moves->pop();
+    // stack<Move> sequence = lastMove.moveStack;
+  }
+}

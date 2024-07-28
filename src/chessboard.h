@@ -5,6 +5,7 @@
 #include <vector>
 #include "piece/piece.h"
 #include "position.h"
+#include "exception.h"
 
 class Piece;
 

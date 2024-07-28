@@ -4,6 +4,10 @@
 
 using namespace std;
 
+/*
+TODO: add helper message and aid ui for CLI
+*/
+
 InputHandler::InputHandler(shared_ptr<Chess> game) : game(game) {};
 
 void InputHandler::enterSetup() {

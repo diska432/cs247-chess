@@ -7,6 +7,7 @@ class Position {
   int y;
 
   public:
+    Position();
     Position(int x, int y);
     Position(std::string c);
     int getX() const;
