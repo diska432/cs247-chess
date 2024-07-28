@@ -5,11 +5,10 @@
 class Position {
   int x;
   int y;
-  std::string coordinate;
 
   public:
     Position(int x, int y);
-    Position(std::string coordinate);
+    Position(std::string c);
     int getX() const;
     int getY() const;
 };

@@ -10,6 +10,10 @@
 
 using namespace std;
 
+/*
+TODO: properly handle exceptions and invalid inputs
+*/
+
 Chessboard::Chessboard() : board(8, vector<shared_ptr<Piece>>(8, nullptr)) {
   for (int i=0; i<width; i++) {
     board[1][i] = make_shared<Pawn>('w'); 
@@ -36,8 +40,23 @@ Chessboard::Chessboard() : board(8, vector<shared_ptr<Piece>>(8, nullptr)) {
   board[7][7] = make_shared<Rook>('b');
 };
 
-void Chessboard::placePiece(int x, int y, shared_ptr<Piece> piece) {
-  board[x][y] = piece;
+void Chessboard::placePiece(Position p, shared_ptr<Piece> piece) {
+  if (!positionInRange(p)) {
+    // throw some error
+    cout << "Yo not in range ( we will be throwing an error here eventually )\n";
+  } else {
+    board[p.getX()][p.getY()] = piece;
+  }
+  // board[x][y] = piece;
+}
+
+void Chessboard::clearSquare(Position p) {
+  if (!positionInRange(p)) {
+    // throw some error
+    cout << "Yo not in range ( we will be throwing an error here eventually )\n";
+  } else {
+    board[p.getX()][p.getY()] = nullptr;
+  }
 }
 
 bool Chessboard::positionInRange(Position p) const {
@@ -51,22 +70,28 @@ shared_ptr<Piece> Chessboard::getSquare(Position p) const {
   if (!positionInRange(p)) {
     // throw some error
     cout << "Yo not in range ( we will be throwing an error here eventually )\n";
+  } else {
+    return board[p.getX()][p.getY()];
   }
-  return board[p.getX()][p.getY()];
 }
 
-void Chessboard::makeMove() {
-  if (positionInRange(Position(0, 0)) && positionInRange(Position(5, 5))) {
-    // Ensure there is a piece at the start position
-    shared_ptr<Piece> piece = board[0][0];
-    if (piece != nullptr) {
-      // Move the piece to the new position
-      board[5][5] = piece;
-      board[0][0] = nullptr; // Clear the old position
-    } else {
-      cout << "No piece at starting position.\n";
-    }
-  } else {
-    cout << "Move out of range.\n";
-  }
+void Chessboard::makeMove(Position from, Position to, char promotion) {
+  shared_ptr<Piece> piece = getSquare(from);
+  placePiece(to, piece);
+  clearSquare(from);
+
+
+  // if (positionInRange(from) && positionInRange(to)) {
+  //   // Ensure there is a piece at the start position
+  //   shared_ptr<Piece> piece = getSquare(from);
+  //   if (piece != nullptr) {
+  //     // Move the piece to the new position
+  //     board[5][5] = piece;
+  //     board[0][0] = nullptr; // Clear the old position
+  //   } else {
+  //     cout << "No piece at starting position.\n";
+  //   }
+  // } else {
+  //   cout << "Move out of range.\n";
+  // }
 }

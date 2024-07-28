@@ -3,6 +3,7 @@
 #include <iostream>
 #include <memory>
 #include "chessboard.h"
+#include "position.h"
 
 class Chess {
   private:
@@ -12,6 +13,7 @@ class Chess {
     Chess();
     std::shared_ptr<Chessboard> getChessboard();
     void switchTeam();
+    void makeMove(Position from, Position to, char promotion);
 };
 
 #endif
