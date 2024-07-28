@@ -4,10 +4,11 @@
 #include "../piece/piece.h"
 #include "../position.h"
 #include <string>
+#include <unordered_set>
 
 using namespace std;
 
-GraphicRender::GraphicRender(Chessboard* chessboard) : Render(chessboard) {};
+GraphicRender::GraphicRender(shared_ptr<Chessboard> chessboard) : Render(chessboard) {};
 
 void GraphicRender::render() {
   int i=0, j=0;
