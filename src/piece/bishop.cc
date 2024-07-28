@@ -8,8 +8,89 @@ Bishop::Bishop(char team) : Piece('b', team) {};
 
 vector<Position> Bishop::getAllMoves(Chessboard &cb, Position p) {
   vector<Position> res;
-  Position temp{0, 0};
-  res.push_back(temp);
+  for(int i = 0; i < 8; i++) {
+    int newX = p.getX() - i;
+    int newY = p.getY() + i;
+    //check for bounds
+    if(newX < 0 || newY > 7) break;
+    //if position not empty
+    if(cb.getSquare({newX, newY}) ) {
+        //if same team then can't move
+        if(cb.getSquare({newX, newY})->getTeam() == this->getTeam()) {
+            break;
+        } else {
+            //if different teams can capture but can't move to squares after the piece
+            res.push_back({newX, newY});
+            break;
+        }
+    } else {
+        //if empty square then valid move
+        res.push_back({newX, newY});
+    }
+  }
+
+  for(int i = 0; i < 8; i++) {
+    int newX = p.getX() + i;
+    int newY = p.getY() + i;
+    //check for bounds
+    if(newX < 0 || newY > 7) break;
+    //if position not empty
+    if(cb.getSquare({newX, newY}) ) {
+        //if same team then can't move
+        if(cb.getSquare({newX, newY})->getTeam() == this->getTeam()) {
+            break;
+        } else {
+            //if different teams can capture but can't move to squares after the piece
+            res.push_back({newX, newY});
+            break;
+        }
+    } else {
+        //if empty square then valid move
+        res.push_back({newX, newY});
+    }
+  }
+
+  for(int i = 0; i < 8; i++) {
+    int newX = p.getX() + i;
+    int newY = p.getY() - i;
+    //check for bounds
+    if(newX < 0 || newY > 7) break;
+    //if position not empty
+    if(cb.getSquare({newX, newY}) ) {
+        //if same team then can't move
+        if(cb.getSquare({newX, newY})->getTeam() == this->getTeam()) {
+            break;
+        } else {
+            //if different teams can capture but can't move to squares after the piece
+            res.push_back({newX, newY});
+            break;
+        }
+    } else {
+        //if empty square then valid move
+        res.push_back({newX, newY});
+    }
+  }
+
+  for(int i = 0; i < 8; i++) {
+    int newX = p.getX() - i;
+    int newY = p.getY() - i;
+    //check for bounds
+    if(newX < 0 || newY > 7) break;
+    //if position not empty
+    if(cb.getSquare({newX, newY}) ) {
+        //if same team then can't move
+        if(cb.getSquare({newX, newY})->getTeam() == this->getTeam()) {
+            break;
+        } else {
+            //if different teams can capture but can't move to squares after the piece
+            res.push_back({newX, newY});
+            break;
+        }
+    } else {
+        //if empty square then valid move
+        res.push_back({newX, newY});
+    }
+  }
   return res;
 }
 
