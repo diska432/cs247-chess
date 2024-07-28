@@ -22,6 +22,8 @@ class Chessboard {
     void clearSquare(Position p);
     void makeMove(Position from, Position to, char promotion);
     int getWidth() const;
+    bool validNumberOfKings() const;
+    bool validPawnPlacement() const;
 };
 
 #endif

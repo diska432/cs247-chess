@@ -90,3 +90,34 @@ void Chessboard::makeMove(Position from, Position to, char promotion) {
   placePiece(to, piece);
   clearSquare(from);
 }
+
+bool Chessboard::validNumberOfKings() const {
+  int white = 0;
+  int black = 0;
+  for (int i=0; i<width; i++) {
+    for (int j=0; j<width; j++) {
+      shared_ptr<Piece> curr = board[i][j];
+      // if (curr == nullptr) continue;
+      if (curr && curr->getSymbol() == 'k') {
+        if (curr->getTeam() == 'w') {
+          white++;
+        } else if (curr->getTeam() == 'b') {
+          black++;
+        }
+      }
+    }
+  }
+  // return true;
+  return (white == 1 && black == 1);
+}
+
+bool Chessboard::validPawnPlacement() const {
+  for (int i=0; i<width; i++) {
+    shared_ptr<Piece> top = board[0][i];
+    shared_ptr<Piece> bottom = board[0][i];
+    if ((top && top->getSymbol() == 'p') || (bottom && bottom->getSymbol() == 'p')) {
+      return false;
+    }
+  }
+  return true;
+}

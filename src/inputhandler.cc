@@ -99,6 +99,14 @@ void InputHandler::enterSetup() {
         continue;
       }
     } else if (op1 == "done") {
+      if (!game->getChessboard()->validNumberOfKings()) {
+        cout << "Invalid game configuration: each player must have 1 king\n";
+        continue;
+      } else if (!game->getChessboard()->validPawnPlacement()) {
+        cout << "Invalid game configuration: pawn must not be on the back ranks\n";
+        continue;
+      }
+      game->setInSetup(false);
       cout << "You have successfully exited setup mode\n";
       break;
     } else {
@@ -106,8 +114,6 @@ void InputHandler::enterSetup() {
       continue;
     }
   }
-
-  game->setInSetup(false);
 }
 
 int InputHandler::handleInput() {
