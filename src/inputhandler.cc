@@ -7,15 +7,39 @@ using namespace std;
 InputHandler::InputHandler(shared_ptr<Chess> game) : game(game) {};
 
 void InputHandler::enterSetup() {
-  cout << "Handling setup\n";
+  game->setInSetup(true);
+
+  string op1;
+  
+  while (cin >> op1) {
+    if (op1 == "+") {
+      break;
+    } else if (op1 == "-") {
+      break;
+    } else if (op1 == "=") {
+      break;
+    } else if (op1 == "done") {
+      break;
+    } else {
+      cout << "Invalid input in setup mode\n";
+      continue;
+    }
+  }
+
+  game->setInSetup(false);
 }
 
 int InputHandler::handleInput() {
-
   string op1;
   cin >> op1;
 
   if (op1 == "setup") {
+    if (!game->getInGame()) {
+      // enter setup mode
+      enterSetup();
+    } else {
+      cout << "You can't enter 'setup' mode while you are playing the game.\n";
+    }
     enterSetup();
   } else if (op1 == "resign") {
     cout << "someonen resigning type sh\n";

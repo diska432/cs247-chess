@@ -10,6 +10,12 @@ shared_ptr<Chessboard> Chess::getChessboard() {
   return chessboard;
 }
 
+void Chess::setInGame(bool inGame) { inGame = inGame; };
+bool Chess::getInGame() { return inGame; };
+
+void Chess::setInSetup(bool inSetup) { inSetup = inSetup; };
+bool Chess::getInSetup() { return inSetup; };
+
 void Chess::switchTeam() {
   if (currTeam == 'w') {
     currTeam = 'b';
@@ -21,3 +27,5 @@ void Chess::switchTeam() {
 void Chess::makeMove(Position from, Position to, char promotion) {
   chessboard->makeMove(from, to, promotion);
 }
+
+

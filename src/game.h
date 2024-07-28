@@ -11,11 +11,6 @@ class Game {
     std::shared_ptr<Chess> chess;
     std::shared_ptr<InputHandler> input;
     std::shared_ptr<TextRender> textrender;
-    // Chess chess;
-    // InputHandler input;
-    // TextRender textrender;
-    // Render render;
-    
   public: 
     Game();
     void play();
