@@ -313,3 +313,24 @@ bool Chessboard::isStalemate(char team) {
 
   return false;
 }
+
+bool Chessboard::isCheckmate(char team) {
+  if(!isInCheck(team)) {
+    return false;
+  }
+  for(int i = 0; i < 8; i++) {
+    for(int j = 0; j < 8; j++) {
+      Position pos{i,j};
+      shared_ptr<Piece> piece = getSquare(pos);
+      if(piece && piece->getTeam() == team) {
+        vector<Position>validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), pos);
+        for(Position temp: validMoves) {
+          if(isValidMove(pos, temp)){
+            return false;
+          }
+        }
+      }
+    }
+  }
+  return true;
+}

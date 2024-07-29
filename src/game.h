@@ -13,6 +13,7 @@ class Game {
     std::shared_ptr<InputHandler> input;
     std::shared_ptr<TextRender> textrender;
     std::shared_ptr<GraphicRender> graphicrender;
+    std::vector<int>scores = {0,0};
   public: 
     Game();
     void play();

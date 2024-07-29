@@ -16,11 +16,24 @@ void Game::play() {
     int res = input->handleInput();
 
     if (chess->getChessboard()->isStalemate('w') || chess->getChessboard()->isStalemate('b')) {
-      break;
+      
     }
     
+    if(chess->getChessboard()->isCheckmate('w') ) {
+      scores[1]++;
+      cout << "Checkmate! Black wins!" << endl;
+      res = 0;
+    } else if(chess->getChessboard()->isCheckmate('b')){
+      scores[0]++;
+      cout << "Checkmate! White wins!" << endl;
+      res = 0;
+    }
+
     if (res == 0) {
       // game is over, so break out and print scores
+      cout << "Final Score: " << endl;
+      cout << "White: " << scores[0] << endl;
+      cout << "Black: " << scores[1] << endl;
       break;
     }
 
