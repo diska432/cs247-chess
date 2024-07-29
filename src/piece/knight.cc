@@ -6,9 +6,11 @@ using namespace std;
 
 Knight::Knight(char team) : Piece('n', team) {};
 
-vector<Position> Knight::getAllMoves(Chessboard &cb, Position p) {
+vector<Position> Knight::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   vector<Position> res;
-  Position temp{0, 0};
-  res.push_back(temp);
+
+  res.push_back(Position{"f6"});
+  res.push_back(Position{"h6"});
+
   return res;
 }

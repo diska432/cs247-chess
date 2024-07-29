@@ -21,6 +21,15 @@ using namespace std;
 TODO: add helper message and aid ui for CLI
 */
 
+shared_ptr<Computer> InputHandler::createLevel(int level) {
+  switch (level) {
+    case 0:
+      return make_shared<Level1>(game->getChessboard());
+    default:
+      return nullptr;
+  }
+}
+
 InputHandler::InputHandler(shared_ptr<Chess> game, std::shared_ptr<TextRender> textrender, std::shared_ptr<GraphicRender> graphicrender) : game(game), textrender(textrender), graphicrender(graphicrender) {};
 
 void InputHandler::enterSetup() {
@@ -135,45 +144,59 @@ int InputHandler::handleInput() {
   } else if (op1 == "resign") {
     cout << "someonen resigning type sh\n";
   } else if (op1 == "move") {
-    string f, t;
-    cin >> f >> t;
-    char promotion;
+    pair<Position, Position> move = game->players[game->currTeam]->getMove();
+
+
+    // string f, t;
+    // cin >> f >> t;
+    char promotion = '_';
     if (cin.peek() != '\n') {
       cin >> promotion;
     }
     try {
-      Position from{f};
-      Position to{t};
-      game->makeMove(from, to, promotion);
+      game->makeMove(move.first, move.second, promotion);
+      game->switchTeam();
+
+      if (!game->players[game->currTeam]->isHumanPlayer()) {
+        pair<Position, Position> move = game->players[game->currTeam]->getMove();
+        game->makeMove(move.first, move.second, promotion);
+        game->switchTeam();
+      }
     } catch (exception& e) {
       cout << "Invalid move. Try again.\n";
     }
+
     // cout << "someone moving type shi\n";
     // game->getChessboard()->makeMove();
   } 
   else if (op1 == "game") {
+    if (game->getInGame()) {
+      cout << "You are already in a game. Please finish the current game before starting a new one.\n";
+    }
+
     string p1, p2;
     cin >> p1 >> p2;
 
+    string p1s = p1.substr(0, p1.size() - 1);
+    string p2s = p2.substr(0, p2.size() - 1);
+
+    int p1Int = p1.back() - '0' - 1;
     int p2Int = p2.back() - '0' - 1;
-    p2.pop_back();
 
     game->setInGame(true);
-
     if (p1 == "human" && p2 == "human") {
-      game->players.emplace('w', std::make_shared<Human>());
-      game->players.emplace('b', std::make_shared<Human>());
-    } else if (p1 == "human" && p2 == "computer") {
-      game->players.emplace('w', std::make_shared<Human>());
-      game->players.emplace('b', std::make_shared<Level1>());
+      game->players.emplace('w', make_shared<Human>());
+      game->players.emplace('b', make_shared<Human>());
+    } else if (p1 == "human" && p2s == "computer") {
+      game->players.emplace('w', make_shared<Human>());
+      game->players.emplace('b', createLevel(p2Int));
+    } else if (p1s == "computer" && p2 == "human") {
+      game->players.emplace('w', createLevel(p1Int));
+      game->players.emplace('b', make_shared<Human>());
 
-    } else if (p1 == "computer" && p2 == "human") {
-      game->players.emplace('w', std::make_shared<Level1>());
-      game->players.emplace('b', std::make_shared<Human>());
-
-    } else if (p1 == "computer" && p2 == "computer") {
-      game->players.emplace('w', std::make_shared<Level1>());
-      game->players.emplace('b', std::make_shared<Level1>());
+    } else if (p1s == "computer" && p2s == "computer") {
+      game->players.emplace('w', createLevel(p1Int));
+      game->players.emplace('b', createLevel(p2Int));
     } else {
       cout << "Invalid game type. Try again.\n";
       game->setInGame(false);

@@ -3,6 +3,7 @@
 #include <iostream>
 #include "chess.h"
 #include "render/textrender.h"
+#include "player/computer/computer.h"
 #include "render/graphicrender.h";
 #include <memory>
 
