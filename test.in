@@ -1,2 +1,10 @@
-game human human
-move d2 d3
+setup 
++ K h1
++ r g8
++ r d2
++ k h8
++ P a7
+done
+game computer1 computer1
+move
+move
