@@ -64,16 +64,16 @@ void Chess::makeMove(Position from, Position to, char promotion) {
   if (!chessboard->isValidMove(from, to)) {
     throw InvalidMoveException();
   }
-  // if (!getInGame()) {
-  //   throw GameNotStartedException();
-  // }
+
+  shared_ptr<Piece> piece = chessboard->getSquare(from);
+  if (piece && (piece->getTeam() != currTeam)) {
+    throw InvalidMoveException();
+  }
 
   vector<shared_ptr<Position>> posToUpdate = chessboard->makeMove(from, to, promotion);
   for (auto &p : posToUpdate) {
     graphicrender->addUpdatedPosition(p);
   }
-  // graphicrender->addUpdatedPosition(make_shared<Position>(from));
-  // graphicrender->addUpdatedPosition(make_shared<Position>(to));
   switchTeam();
 }
 
