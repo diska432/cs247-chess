@@ -27,9 +27,12 @@ class Chessboard {
     bool positionInRange(Position&) const;
     bool isValidMove(Position s, Position e) const;
 
-    std::vector<Position> getPiecePositions(char);
+    std::vector<std::shared_ptr<Position>> getPiecePositions(char);
     char opponentTeam(char);
     bool isSquareUnderAttack(Position, char);
+
+    bool isInCheck(char team);
+    Position getKingPosition(char team);
 
     Position getPotentialEnPassant() const;
 

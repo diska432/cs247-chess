@@ -27,16 +27,22 @@ pair<Position, Position> Level2::getMove() {
         if (piece != nullptr && piece->getTeam() == color) {
           vector<Position> moves = piece->getAllMoves(chessboard, q);
           for (Position move : moves) {
-              valid_moves.push_back(make_pair(q, move));
+              if (chessboard->isValidMove(q, move)) {
+                valid_moves.push_back(make_pair(q, move));
+              }
 
               if (chessboard->getSquare(move) != nullptr) {
-                capture_moves.push_back(make_pair(q, move));
+                if (chessboard->isValidMove(q, move)) {
+                  capture_moves.push_back(make_pair(q, move));
+                }
               }
               
               vector<Position> sMoves = piece->getAllMoves(chessboard, move);
               for (Position sMove : sMoves) {
                 cout << sMove.toString() << endl;
-                second_order_moves.push_back(make_pair(make_pair(q, move), sMove));
+                if (chessboard->isValidMove(q, move) && chessboard->isValidMove(move, sMove)) {
+                  second_order_moves.push_back(make_pair(make_pair(q, move), sMove));
+                }
               }  
              
           }

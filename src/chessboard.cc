@@ -72,7 +72,6 @@ void Chessboard::clearSquare(Position p) {
 }
 
 bool Chessboard::positionInRange(Position& p) const {
-  // return true;
   return (
     p.getX() >= 0 && p.getX() < width &&
     p.getY() >= 0 && p.getY() < width 
@@ -104,12 +103,13 @@ bool Chessboard::isValidMove(Position s, Position e) const {
   }
 
   shared_ptr<Piece> piece = getSquare(s);
-  char type = piece->getSymbol();
-  char team = piece->getTeam();
 
   if (piece == nullptr) {
     return false; // can't move something that doesn't exist
   }
+
+  char type = piece->getSymbol();
+  char team = piece->getTeam();
 
   vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), s);
   // if (type != 'r' || type != 'b' || type != 'n' || type != 'q' || type != 'p') {
@@ -123,7 +123,14 @@ bool Chessboard::isValidMove(Position s, Position e) const {
   Add logic to check if the move will put the team's king in check
   */
 
-  return true;
+  Chessboard mock{*this};
+  mock.clearSquare(s);
+  mock.placePiece(e, piece);
+  if (mock.isInCheck(team)) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, char promotion) {
@@ -224,14 +231,14 @@ bool Chessboard::validPawnPlacement() const {
   return true;
 }
 
-std::vector<Position> Chessboard::getPiecePositions(char team) {
-  vector<Position>piecePositions;
+vector<shared_ptr<Position>> Chessboard::getPiecePositions(char team) {
+  vector<shared_ptr<Position>> piecePositions;
   for(int i = 0; i < 8; i++) {
     for(int j = 0; j < 8; j++) {
       Position temp = Position{i, j};
       shared_ptr<Piece> tempPiece = getSquare(temp);
-      if(!tempPiece && tempPiece->getTeam() == team) {
-        piecePositions.push_back(temp);
+      if(tempPiece && tempPiece->getTeam() == team) {
+        piecePositions.push_back(make_shared<Position>(temp));
       }
     }
   }
@@ -247,15 +254,34 @@ char Chessboard::opponentTeam(char team) {
 }
 
 bool Chessboard::isSquareUnderAttack(Position p, char team) {
-  vector<Position> opponentValidMoves;
-  vector<Position> opponentPiecePositions = getPiecePositions(opponentTeam(team));
-  for(Position temp : opponentPiecePositions) {
-    shared_ptr<Piece> piece = getSquare(temp);
-    vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), temp);
+  vector<shared_ptr<Position>> opponentPiecePositions = getPiecePositions(opponentTeam(team));
+  
+  for(auto &yo : opponentPiecePositions) {
+    shared_ptr<Piece> piece = getSquare(*yo);
+    vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), *yo);
     if(find(validMoves.begin(), validMoves.end(), p) != validMoves.end()){
       return true;
     }
   }
   return false;
+}
+
+Position Chessboard::getKingPosition(char team) {
+  for (int i=0; i<8; i++) {
+    for (int j=0; j<8; j++) {
+      Position pos{i, j};
+      shared_ptr<Piece> piece = getSquare(pos);
+      if (piece && piece->getTeam() == team && piece->getSymbol() == 'k') {
+        return pos;
+      }
+    }
+  }
+
+  return Position{-1, -1};
+}
+
+bool Chessboard::isInCheck(char team) {
+  Position kingPos = getKingPosition(team);
+  return isSquareUnderAttack(kingPos, team);
 }
 
