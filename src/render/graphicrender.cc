@@ -79,6 +79,9 @@ string GraphicRender::getChar(const shared_ptr<Piece>& piece) const {
       case 'k':
         return "k";
         break;
+      case 'f':
+        return "f";
+        break;
       default:
         return " ";
     }
@@ -101,6 +104,9 @@ string GraphicRender::getChar(const shared_ptr<Piece>& piece) const {
         break;
       case 'k':
         return "K";
+        break;
+      case 'f':
+        return "F";
         break;
       default:
         return " ";

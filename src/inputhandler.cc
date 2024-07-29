@@ -7,6 +7,7 @@
 #include "piece/bishop.h"
 #include "piece/queen.h"
 #include "piece/king.h"
+#include "piece/princess.h"
 #include "chess.h"
 #include "render/textrender.h"
 #include "render/graphicrender.h"
@@ -77,6 +78,10 @@ void InputHandler::enterSetup() {
         case 'k': 
         case 'K':
           piece = make_shared<King>(team);
+          break;
+        case 'f':
+        case 'F':
+          piece = make_shared<Princess>(team);
           break;
         default:
           cout << "Invalid piece type\n";
