@@ -78,10 +78,21 @@ shared_ptr<Piece> Chessboard::getSquare(Position p) const {
 void Chessboard::makeMove(Position from, Position to, char promotion) {
   shared_ptr<Piece> piece = getSquare(from);
   vector<Position> allMoves = piece->getAllMoves(*this, from);
+  bool foundLegalMove = false;
   for (int i=0; i<allMoves.size(); i++) {
+    if(to.getX() == allMoves[i].getX() && to.getY() == allMoves[i].getY()) {
+      cout << "this move is legal " << endl;
+      foundLegalMove = true;
+    }
     Position p = allMoves[i];
     cout << p << "\n";
   }
-  placePiece(to, piece);
-  clearSquare(from);
+  if(!foundLegalMove) {
+    cout << "Throw illegal move exception" << endl; 
+  } else {
+    placePiece(to, piece);
+    clearSquare(from);
+  }
+  // placePiece(to, piece);
+  // clearSquare(from);
 }

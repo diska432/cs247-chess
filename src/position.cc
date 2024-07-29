@@ -18,13 +18,13 @@ int Position::getX() const { return x; };
 int Position::getY() const { return y; };
 
 std::string Position::toString() const {
-  char l = 'a' + x;
-  string res = l + to_string(y+1);
+  char l = 'a' + y;
+  string res = l + to_string(x+1);
   return res;
 }
 
 ostream& operator<<(ostream& out, const Position& p) {
-  out << "X: " << p.getX() << ", Y: " << p.getY() << " | ";
+  out << "X: " << p.getY() << ", Y: " << p.getX() << " | ";
   out << p.toString();
   return out;
 }

@@ -45,10 +45,10 @@ vector<Position> Pawn::getAllMoves(Chessboard &cb, Position p) {
     }
     //check for capture
     if(p.getX() - 1 >= 0 && p.getY() + 1 < 8 && p.getY() -1 >= 0) {
-        if(cb.getSquare({p.getX() - 1, p.getY() + 1}) && cb.getSquare({p.getX() - 1, p.getY() + 1})->getTeam() == 'b') {
+        if(cb.getSquare({p.getX() - 1, p.getY() + 1}) && cb.getSquare({p.getX() - 1, p.getY() + 1})->getTeam() == 'w') {
             res.push_back({p.getX() - 1, p.getY() + 1});
         } 
-        if(cb.getSquare({p.getX() - 1, p.getY() - 1}) && cb.getSquare({p.getX() - 1, p.getY() - 1})->getTeam() == 'b') {
+        if(cb.getSquare({p.getX() - 1, p.getY() - 1}) && cb.getSquare({p.getX() - 1, p.getY() - 1})->getTeam() == 'w') {
             res.push_back({p.getX() - 1, p.getY() - 1});
         } 
     }
