@@ -169,7 +169,7 @@ std::vector<Position> Chessboard::getPiecePositions(char team) {
     for(int j = 0; j < 8; j++) {
       Position temp = Position{i, j};
       shared_ptr<Piece> tempPiece = getSquare(temp);
-      if(tempPiece->getTeam() == team) {
+      if(!tempPiece && tempPiece->getTeam() == team) {
         piecePositions.push_back(temp);
       }
     }
