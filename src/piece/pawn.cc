@@ -21,7 +21,7 @@ vector<Position> Pawn::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   if (piece != nullptr && !piece->getMoved()) {
     Position forward = p + dirs[0];
     Position forwardTwice = forward + dirs[0];
-    cout << forward << " | " << forwardTwice << "\n";
+    // cout << forward << " | " << forwardTwice << "\n";
     if (cb->positionInRange(forwardTwice)) {
       if (cb->getSquare(forward) == nullptr && cb->getSquare(forwardTwice) == nullptr) {
         res.push_back(forwardTwice);

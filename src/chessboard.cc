@@ -193,9 +193,41 @@ vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, ch
     }
   }
 
+  if (piece->getSymbol() == 'k') {
+    Position pr = to - from;
+    if (abs(pr.getY()) == 2) {
+      Position dir = Position{pr.getX()/abs(pr.getX()), pr.getY()/abs(pr.getY())};
+      Position iter = from;
+      shared_ptr<Piece> pce;
+      while (!pce || pce->getSymbol() != 'r') {
+        iter = iter + dir;
+        pce = getSquare(iter);
+      }
+
+      // Move rook to opposite side of king
+      clearSquare(iter);
+      pce->setMoved(true);
+      placePiece(to-dir, pce);
+
+      Position toAdd = Position{from};
+      while (!(toAdd == to)) {
+        res.push_back(make_shared<Position>(toAdd));
+        toAdd = toAdd + dir;
+      }
+      res.push_back(make_shared<Position>(iter));
+    }
+  }
+
   if (piece->getSymbol() != 'p') {
     potentialEnPassant = Position{-1, -1};
   }
+
+  // cout << "\nTO UPDATE ";
+
+  // for (auto &ni : res) {
+  //   cout << *ni << " ";
+  // }
+  // cout << "\n";
 
   return res;
 }
