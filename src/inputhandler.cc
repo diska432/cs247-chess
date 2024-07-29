@@ -13,6 +13,8 @@
 #include "player/player.h"
 #include "player/human/human.h"
 #include "player/computer/level1.h"
+#include "player/computer/level2.h"
+#include "player/computer/level3.h"
 #include <memory>
 
 using namespace std;
@@ -21,10 +23,15 @@ using namespace std;
 TODO: add helper message and aid ui for CLI
 */
 
-shared_ptr<Computer> InputHandler::createLevel(int level) {
+shared_ptr<Computer> InputHandler::createLevel(int level, char color) {
   switch (level) {
     case 0:
-      return make_shared<Level1>(game->getChessboard());
+      return make_shared<Level1>(game->getChessboard(), color);
+    case 1:
+      return make_shared<Level2>(game->getChessboard(), color);
+    case 2:
+      return make_shared<Level3>(game->getChessboard(), color);
+
     default:
       return nullptr;
   }
@@ -86,6 +93,15 @@ void InputHandler::enterSetup() {
       string breaker(2*(game->getChessboard()->getWidth() + 1), '-');
       cout << breaker << "\n";
       textrender->render();
+
+      game->getGraphicRender()->addUpdatedPosition(make_shared<Position>(pos));
+      if (!game->getInitBackdrop()) {
+        graphicrender->render();
+        game->setInitBackdrop(true);
+      } else {
+        graphicrender->update();
+      }
+
     } else if (op1 == "-") {
       string coord;
       cin >> coord;
@@ -100,6 +116,14 @@ void InputHandler::enterSetup() {
       string breaker(2*(game->getChessboard()->getWidth() + 1), '-');
       cout << breaker << "\n";
       textrender->render();
+
+      game->getGraphicRender()->addUpdatedPosition(make_shared<Position>(pos));
+      if (!game->getInitBackdrop()) {
+        graphicrender->render();
+        game->setInitBackdrop(true);
+      } else {
+        graphicrender->update();
+      }
     } else if (op1 == "=") {
       string color;
       cin >> color;
@@ -144,24 +168,20 @@ int InputHandler::handleInput() {
   } else if (op1 == "resign") {
     cout << "someonen resigning type sh\n";
   } else if (op1 == "move") {
+    if (!game->getInGame()) {
+      cout << "Cannot move, game has not been started\n";
+      return 1;
+    }
     pair<Position, Position> move = game->players[game->currTeam]->getMove();
 
-
-    // string f, t;
-    // cin >> f >> t;
     char promotion = '_';
     if (cin.peek() != '\n') {
       cin >> promotion;
     }
     try {
       game->makeMove(move.first, move.second, promotion);
-      game->switchTeam();
+      // game->switchTeam();
 
-      if (!game->players[game->currTeam]->isHumanPlayer()) {
-        pair<Position, Position> move = game->players[game->currTeam]->getMove();
-        game->makeMove(move.first, move.second, promotion);
-        game->switchTeam();
-      }
     } catch (exception& e) {
       cout << "Invalid move. Try again.\n";
     }
@@ -189,19 +209,18 @@ int InputHandler::handleInput() {
       game->players.emplace('b', make_shared<Human>());
     } else if (p1 == "human" && p2s == "computer") {
       game->players.emplace('w', make_shared<Human>());
-      game->players.emplace('b', createLevel(p2Int));
+      game->players.emplace('b', createLevel(p2Int, 'b'));
     } else if (p1s == "computer" && p2 == "human") {
-      game->players.emplace('w', createLevel(p1Int));
+      game->players.emplace('w', createLevel(p1Int, 'w'));
       game->players.emplace('b', make_shared<Human>());
 
     } else if (p1s == "computer" && p2s == "computer") {
-      game->players.emplace('w', createLevel(p1Int));
-      game->players.emplace('b', createLevel(p2Int));
+      game->players.emplace('w', createLevel(p1Int, 'w'));
+      game->players.emplace('b', createLevel(p2Int, 'b'));
     } else {
       cout << "Invalid game type. Try again.\n";
       game->setInGame(false);
-    }
-  } 
+    }  } 
   else {
     if (cin.eof()) {
       return 0;

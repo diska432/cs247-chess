@@ -28,6 +28,10 @@ Position Position::operator+(const Position& p) const {
   return Position{x + p.getX(), y + p.getY()};
 }
 
+Position Position::operator-(const Position& p) const {
+  return Position{x - p.getX(), y - p.getY()};
+}
+
 ostream& operator<<(ostream& out, const Position& p) {
   out << p.toString();
   return out;

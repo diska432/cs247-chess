@@ -13,7 +13,6 @@ vector<Position> Rook::getAllMoves(shared_ptr<Chessboard> cb, Position p) {
     throw std::out_of_range("Rook::getAllMoves: position out of range");
   }
   shared_ptr<Piece> piece = cb->getSquare(p);
-  char team = piece->getTeam();
   vector<Position> res;
 
   vector<Position> dirs{Position{1, 0}, Position{-1, 0}, Position{0, 1}, Position{0, -1}};
@@ -33,12 +32,6 @@ vector<Position> Rook::getAllMoves(shared_ptr<Chessboard> cb, Position p) {
       res.push_back(temp);
       temp = temp + pr;
     }
-  }
-
-  cout << "Rook validation moves: ";
-
-  for (auto& p : res) {
-    cout << p << " ";
   }
 
   return res;

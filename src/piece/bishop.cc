@@ -11,7 +11,6 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard> cb, Position p)
     throw std::out_of_range("Rook::getAllMoves: position out of range");
   }
   shared_ptr<Piece> piece = cb->getSquare(p);
-  char team = piece->getTeam();
   vector<Position> res;
 
   vector<Position> dirs{Position{1, 1}, Position{1, -1}, Position{-1, 1}, Position{-1, -1}};
@@ -32,12 +31,5 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard> cb, Position p)
     }
   }
 
-  cout << "Bishop validation moves: ";
-
-  for (auto& p : res) {
-    cout << p << " ";
-  }
-
   return res;
 }
-

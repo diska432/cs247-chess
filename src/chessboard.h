@@ -13,21 +13,26 @@ class Chessboard {
   private:
     std::vector<std::vector<std::shared_ptr<Piece>>> board;
     int width = 8;
+    Position potentialEnPassant;
   public:
     Chessboard();
     void clearBoard();
     void placePiece(Position p, std::shared_ptr<Piece>);
     std::shared_ptr<Piece> getSquare(Position&) const;
     void clearSquare(Position);
-    void makeMove(Position, Position, char);
+    std::vector<std::shared_ptr<Position>> makeMove(Position, Position, char);
     int getWidth() const;
     bool validNumberOfKings() const;
     bool validPawnPlacement() const;
     bool positionInRange(Position&) const;
     bool isValidMove(Position s, Position e) const;
+
     std::vector<Position> getPiecePositions(char);
     char opponentTeam(char);
     bool isSquareUnderAttack(Position, char);
+
+    Position getPotentialEnPassant() const;
+
 };
 
 #endif
