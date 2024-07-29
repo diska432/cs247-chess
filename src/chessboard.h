@@ -12,7 +12,6 @@ class Piece;
 class Chessboard {
   private:
     std::vector<std::vector<std::shared_ptr<Piece>>> board;
-    bool positionInRange(Position&) const;
     int width = 8;
   public:
     Chessboard();
@@ -24,6 +23,7 @@ class Chessboard {
     int getWidth() const;
     bool validNumberOfKings() const;
     bool validPawnPlacement() const;
+    bool positionInRange(Position&) const;
     bool isValidMove(Position s, Position e) const;
 };
 
