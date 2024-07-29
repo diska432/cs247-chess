@@ -21,10 +21,10 @@ using namespace std;
 TODO: add helper message and aid ui for CLI
 */
 
-shared_ptr<Computer> InputHandler::createLevel(int level) {
+shared_ptr<Computer> InputHandler::createLevel(int level, char color) {
   switch (level) {
     case 0:
-      return make_shared<Level1>(game->getChessboard());
+      return make_shared<Level1>(game->getChessboard(), color);
     default:
       return nullptr;
   }
@@ -167,9 +167,6 @@ int InputHandler::handleInput() {
     }
     pair<Position, Position> move = game->players[game->currTeam]->getMove();
 
-
-    // string f, t;
-    // cin >> f >> t;
     char promotion = '_';
     if (cin.peek() != '\n') {
       cin >> promotion;
@@ -178,11 +175,6 @@ int InputHandler::handleInput() {
       game->makeMove(move.first, move.second, promotion);
       // game->switchTeam();
 
-      if (!game->players[game->currTeam]->isHumanPlayer()) {
-        pair<Position, Position> move = game->players[game->currTeam]->getMove();
-        game->makeMove(move.first, move.second, promotion);
-        game->switchTeam();
-      }
     } catch (exception& e) {
       cout << "Invalid move. Try again.\n";
     }
@@ -210,19 +202,18 @@ int InputHandler::handleInput() {
       game->players.emplace('b', make_shared<Human>());
     } else if (p1 == "human" && p2s == "computer") {
       game->players.emplace('w', make_shared<Human>());
-      game->players.emplace('b', createLevel(p2Int));
+      game->players.emplace('b', createLevel(p2Int, 'b'));
     } else if (p1s == "computer" && p2 == "human") {
-      game->players.emplace('w', createLevel(p1Int));
+      game->players.emplace('w', createLevel(p1Int, 'w'));
       game->players.emplace('b', make_shared<Human>());
 
     } else if (p1s == "computer" && p2s == "computer") {
-      game->players.emplace('w', createLevel(p1Int));
-      game->players.emplace('b', createLevel(p2Int));
+      game->players.emplace('w', createLevel(p1Int, 'w'));
+      game->players.emplace('b', createLevel(p2Int, 'b'));
     } else {
       cout << "Invalid game type. Try again.\n";
       game->setInGame(false);
-    }
-  } 
+    }  } 
   else {
     if (cin.eof()) {
       return 0;
