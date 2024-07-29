@@ -34,11 +34,5 @@ vector<Position> Rook::getAllMoves(shared_ptr<Chessboard> cb, Position p) {
     }
   }
 
-  cout << "Rook validation moves: ";
-
-  for (auto& p : res) {
-    cout << p << " ";
-  }
-
   return res;
 }

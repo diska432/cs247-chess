@@ -30,11 +30,5 @@ vector<Position> Knight::getAllMoves(std::shared_ptr<Chessboard> cb, Position p)
     }
   }
 
-  cout << "Knight validation moves: ";
-
-  for (auto& p : res) {
-    cout << p << " ";
-  }
-
   return res;
 }

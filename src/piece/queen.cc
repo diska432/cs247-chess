@@ -35,11 +35,5 @@ vector<Position> Queen::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) 
     }
   }
 
-  cout << "Queen validation moves: ";
-
-  for (auto& p : res) {
-    cout << p << " ";
-  }
-
   return res;
 }

@@ -127,7 +127,7 @@ bool Chessboard::isValidMove(Position s, Position e) const {
 }
 
 vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, char promotion) {
-  std::cout << "Making move from " << from.getX() << "," << from.getY() << " to " << to.getX() << "," << to.getY() << std::endl;  
+  std::cout << std::endl << std::endl << "Making move from " << from.toString() << " to " << to.toString() << std::endl;  
   vector<shared_ptr<Position>> res;
   res.push_back(make_shared<Position>(from));
   res.push_back(make_shared<Position>(to));

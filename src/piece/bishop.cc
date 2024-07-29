@@ -31,9 +31,5 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard> cb, Position p)
     }
   }
 
-  for (auto& p : res) {
-    cout << "Bishop validation moves: " << p << " ";
-  }
-
   return res;
 }

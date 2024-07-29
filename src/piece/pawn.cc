@@ -58,11 +58,6 @@ vector<Position> Pawn::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
     res.push_back(p + Position{yVector, -1});
   }
 
-  cout << "Pawn validation moves: ";
-
-  for (auto& p : res) {
-    cout << p << " ";
-  }
 
   return res;
 }
