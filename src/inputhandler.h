@@ -12,6 +12,7 @@ class InputHandler {
     std::shared_ptr<Chess> game;
     std::shared_ptr<TextRender> textrender;
     std::shared_ptr<GraphicRender> graphicrender;
+    std::shared_ptr<Computer> createLevel(int, char);
     bool inSetup = false;
     void enterSetup();
   public: 

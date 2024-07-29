@@ -8,9 +8,7 @@ Knight::Knight(char team) : Piece('n', team) {};
 
 vector<Position> Knight::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   vector<Position> res;
-
   res.push_back(Position{"f6"});
-  res.push_back(Position{"h6"});
-
   return res;
+
 }
