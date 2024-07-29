@@ -13,6 +13,8 @@
 #include "player/player.h"
 #include "player/human/human.h"
 #include "player/computer/level1.h"
+#include "player/computer/level2.h"
+#include "player/computer/level3.h"
 #include <memory>
 
 using namespace std;
@@ -25,6 +27,11 @@ shared_ptr<Computer> InputHandler::createLevel(int level, char color) {
   switch (level) {
     case 0:
       return make_shared<Level1>(game->getChessboard(), color);
+    case 1:
+      return make_shared<Level2>(game->getChessboard(), color);
+    case 2:
+      return make_shared<Level3>(game->getChessboard(), color);
+
     default:
       return nullptr;
   }
