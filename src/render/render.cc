@@ -2,7 +2,9 @@
 #include "../chessboard.h"
 #include "../position.h"
 
-Render::Render(Chessboard* chessboard) : chessboard(chessboard) {};
+using namespace std;
+
+Render::Render(shared_ptr<Chessboard> chessboard) : chessboard(chessboard) {};
 
 Render::~Render() {};
 

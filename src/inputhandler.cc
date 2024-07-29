@@ -9,6 +9,7 @@
 #include "piece/king.h"
 #include "chess.h"
 #include "render/textrender.h"
+#include "render/graphicrender.h"
 #include "player/player.h"
 #include "player/human/human.h"
 #include "player/computer/level1.h"
@@ -29,7 +30,7 @@ shared_ptr<Computer> InputHandler::createLevel(int level) {
   }
 }
 
-InputHandler::InputHandler(shared_ptr<Chess> game, std::shared_ptr<TextRender> textrender) : game(game), textrender(textrender) {};
+InputHandler::InputHandler(shared_ptr<Chess> game, std::shared_ptr<TextRender> textrender, std::shared_ptr<GraphicRender> graphicrender) : game(game), textrender(textrender), graphicrender(graphicrender) {};
 
 void InputHandler::enterSetup() {
   game->setInSetup(true);
@@ -139,7 +140,7 @@ int InputHandler::handleInput() {
     } else {
       cout << "You can't enter 'setup' mode while you are playing the game.\n";
     }
-    enterSetup();
+    
   } else if (op1 == "resign") {
     cout << "someonen resigning type sh\n";
   } else if (op1 == "move") {
