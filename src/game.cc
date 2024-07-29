@@ -15,6 +15,10 @@ void Game::play() {
   for(;;) {
     int res = input->handleInput();
 
+    if (chess->getChessboard()->isStalemate('w') || chess->getChessboard()->isStalemate('b')) {
+      break;
+    }
+    
     if (res == 0) {
       // game is over, so break out and print scores
       break;
