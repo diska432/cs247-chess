@@ -7,18 +7,27 @@
 #include "position.h"
 #include "move.h"
 #include "player/player.h"
+#include "render/graphicrender.h"
 #include <map>
+
+class GraphicRender;
 
 class Chess {
   private:
     std::shared_ptr<Chessboard> chessboard;
     std::shared_ptr<std::stack<AtomicMove>> moves;
+    std::shared_ptr<GraphicRender> graphicrender;
 
     bool inSetup = false;
     bool inGame = false;
+    bool initBackdrop = false;
   public:
     Chess();
-    std::shared_ptr<Chessboard> getChessboard();
+
+    std::shared_ptr<Chessboard> getChessboard() const;
+    std::shared_ptr<GraphicRender> getGraphicRender() const;
+    void setGraphicRender(std::shared_ptr<GraphicRender> gr);
+
     char currTeam = 'w';
     std::map<char, std::shared_ptr<Player>> players; 
 
@@ -30,6 +39,9 @@ class Chess {
     // Getter/setter for inSetup flag
     void setInSetup(bool b);
     bool getInSetup();
+
+    void setInitBackdrop(bool b);
+    bool getInitBackdrop();
 
     // Getter/setter for inGame flag
     void setInGame(bool b);

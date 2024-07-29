@@ -10,6 +10,29 @@ using namespace std;
 
 GraphicRender::GraphicRender(shared_ptr<Chessboard> chessboard) : Render(chessboard) {};
 
+void GraphicRender::addUpdatedPosition(std::shared_ptr<Position> p) {
+  positions.push_back(p);
+}
+
+void GraphicRender::update() {
+  for (auto& p : positions) {
+    drawSquare(p);
+  }
+  positions.clear();
+}
+
+void GraphicRender::drawSquare(std::shared_ptr<Position> p) {
+  int i=7-p->getX(), j=p->getY();
+  shared_ptr<Piece> piece = chessboard->getSquare(*p);
+  int x = 100 + 50*j, y = 50 + 50*i;
+  window.fillRectangle(x-25, y-25, 50, 50, Xwindow::White);
+  if (piece != nullptr) {
+    window.drawString(100 + 50*j, 50 + 50*i, getChar(piece));
+  } else {
+    window.drawString(100 + 50*j, 50 + 50*i, (isWhite(*p) ? "_" : " "));
+  }
+}
+
 void GraphicRender::render() {
   int i=0, j=0;
   for (; i<8; i++) {
@@ -18,10 +41,11 @@ void GraphicRender::render() {
     for (; j<8; j++) {
       Position p{7-i, j};
       shared_ptr<Piece> piece = chessboard->getSquare(p);
+      int x = 100 + 50*j, y = 50 + 50*i;
       if (piece != nullptr) {
-        window.drawString(100 + 50*j, 50 + 50*i, getChar(piece));
+        window.drawString(x, y, getChar(piece));
       } else {
-        window.drawString(100 + 50*j, 50 + 50*i, (isWhite(p) ? "_" : " "));
+        window.drawString(x, y, (isWhite(p) ? "_" : " "));
       }
     }
   }
