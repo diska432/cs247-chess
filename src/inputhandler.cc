@@ -9,6 +9,7 @@
 #include "piece/king.h"
 #include "chess.h"
 #include "render/textrender.h"
+#include "render/graphicrender.h"
 #include "player/player.h"
 #include "player/human/human.h"
 #include "player/computer/level1.h"
@@ -20,7 +21,7 @@ using namespace std;
 TODO: add helper message and aid ui for CLI
 */
 
-InputHandler::InputHandler(shared_ptr<Chess> game, std::shared_ptr<TextRender> textrender) : game(game), textrender(textrender) {};
+InputHandler::InputHandler(shared_ptr<Chess> game, std::shared_ptr<TextRender> textrender, std::shared_ptr<GraphicRender> graphicrender) : game(game), textrender(textrender), graphicrender(graphicrender) {};
 
 void InputHandler::enterSetup() {
   game->setInSetup(true);
