@@ -148,7 +148,7 @@ void Chessboard::makeMove(Position from, Position to, char promotion) {
         int yDiff = piece->getTeam() == 'w' ? -1 : 1;
         // if we are white, we want to capture when 
         // black moves down and vice versa
-        Position enPassant = from + Position{yDiff, 0};
+        Position enPassant = to + Position{yDiff, 0};
         if (enPassant == potentialEnPassant) {
           clearSquare(enPassant);
         }
