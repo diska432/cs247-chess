@@ -110,7 +110,9 @@ bool Chessboard::isValidMove(Position s, Position e) const {
   }
 
   vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), s);
-
+  if (type != 'r' || type != 'b') {
+    return true;
+  }
   if (find(validMoves.begin(), validMoves.end(), e) == validMoves.end()) {
     return false;
   }
@@ -124,6 +126,7 @@ bool Chessboard::isValidMove(Position s, Position e) const {
 
 void Chessboard::makeMove(Position from, Position to, char promotion) {
   std::cout << "Making move from " << from.getX() << "," << from.getY() << " to " << to.getX() << "," << to.getY() << std::endl;  
+  
   shared_ptr<Piece> piece = getSquare(from);
   placePiece(to, piece);
   clearSquare(from);

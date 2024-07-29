@@ -59,11 +59,11 @@ void Chess::makeMove(Position from, Position to, char promotion) {
   Move?
   */
 
-  // Position fr{0, 0};
-  // Position tom{2, 2};
-  // if (!chessboard->isValidMove(fr, tom)) {
-  //   throw InvalidMoveException();
-  // }
+  Position fr{"c1"};
+  Position tom{2, 2};
+  if (!chessboard->isValidMove(from, to)) {
+    throw InvalidMoveException();
+  }
   // chessboard->isValidMove(from, to);
   chessboard->makeMove(from, to, promotion);
   graphicrender->addUpdatedPosition(make_shared<Position>(from));
