@@ -5,7 +5,7 @@
 
 class Level1 : public Computer {
   public:
-    Level1(std::shared_ptr<Chessboard> chessboard);
+    Level1(std::shared_ptr<Chessboard>, char color);
     std::pair<Position, Position> getMove() override;
 };
 

@@ -20,7 +20,7 @@ Chessboard::Chessboard() : board(8, vector<shared_ptr<Piece>>(8, nullptr)) {
     board[1][i] = make_shared<Pawn>('w'); 
     board[6][i] = make_shared<Pawn>('b'); 
   }
-  // Black back-rank pieces
+  // White back-rank pieces
   board[0][0] = make_shared<Rook>('w');
   board[0][1] = make_shared<Knight>('w');
   board[0][2] = make_shared<Bishop>('w');
@@ -30,7 +30,7 @@ Chessboard::Chessboard() : board(8, vector<shared_ptr<Piece>>(8, nullptr)) {
   board[0][6] = make_shared<Knight>('w');
   board[0][7] = make_shared<Rook>('w');
   
-  // White back-rank pieces
+  // Black back-rank pieces
   board[7][0] = make_shared<Rook>('b');
   board[7][1] = make_shared<Knight>('b');
   board[7][2] = make_shared<Bishop>('b');
@@ -50,6 +50,8 @@ void Chessboard::clearBoard() {
 }
 
 int Chessboard::getWidth() const { return width; };
+
+Position Chessboard::getPotentialEnPassant() const { return potentialEnPassant; };
 
 void Chessboard::placePiece(Position p, shared_ptr<Piece> piece) {
   if (!positionInRange(p)) {
@@ -110,9 +112,9 @@ bool Chessboard::isValidMove(Position s, Position e) const {
   }
 
   vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), s);
-  if (type != 'r' || type != 'b' || type != 'n' || type != 'q') {
-    return true;
-  }
+  // if (type != 'r' || type != 'b' || type != 'n' || type != 'q' || type != 'p') {
+  //   return true;
+  // }
   if (find(validMoves.begin(), validMoves.end(), e) == validMoves.end()) {
     return false;
   }
@@ -124,12 +126,71 @@ bool Chessboard::isValidMove(Position s, Position e) const {
   return true;
 }
 
-void Chessboard::makeMove(Position from, Position to, char promotion) {
+vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, char promotion) {
   std::cout << "Making move from " << from.getX() << "," << from.getY() << " to " << to.getX() << "," << to.getY() << std::endl;  
-  
+  vector<shared_ptr<Position>> res;
+  res.push_back(make_shared<Position>(from));
+  res.push_back(make_shared<Position>(to));
   shared_ptr<Piece> piece = getSquare(from);
+  piece->setMoved(true);
   placePiece(to, piece);
   clearSquare(from);
+
+  if (piece->getSymbol() == 'p') {
+    // pawns are special
+    // 1. en passant
+    // 2. promotion
+    Position pr = to - from;
+    if (abs(pr.getX()) == 2 && pr.getY() == 0) {
+      // directly up 2 or down 2
+      potentialEnPassant = to;
+    } else {
+      if (pr.getY() != 0) {
+        // diagonal movement type beat
+        int yDiff = piece->getTeam() == 'w' ? -1 : 1;
+        // if we are white, we want to capture when 
+        // black moves down and vice versa
+        Position enPassant = to + Position{yDiff, 0};
+        if (enPassant == potentialEnPassant) {
+          clearSquare(enPassant);
+          res.push_back(make_shared<Position>(enPassant));
+        }
+      }
+      potentialEnPassant = Position{-1, -1};
+    }
+
+    // promotion
+    if (piece->getTeam() == 'w' && to.getX() == 7 ||
+        piece->getTeam() == 'b' && to.getX() == 0) {
+      // this is a pawn that is now located on a back rank
+      shared_ptr<Piece> promotedPawn;
+      switch (promotion) {
+        case 'q':
+          promotedPawn = make_shared<Queen>(piece->getTeam());
+          break;
+        case 'r':
+          promotedPawn = make_shared<Rook>(piece->getTeam());
+          break;
+        case 'b':
+          promotedPawn = make_shared<Bishop>(piece->getTeam());
+          break;
+        case 'n':
+          promotedPawn = make_shared<Knight>(piece->getTeam());
+          break;
+        default:
+          clearSquare(to);
+          placePiece(from, piece);
+          throw InvalidPromotionException();
+      }
+      placePiece(to, promotedPawn);
+    }
+  }
+
+  if (piece->getSymbol() != 'p') {
+    potentialEnPassant = Position{-1, -1};
+  }
+
+  return res;
 }
 
 bool Chessboard::validNumberOfKings() const {

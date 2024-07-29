@@ -11,7 +11,6 @@ vector<Position> Queen::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) 
     throw std::out_of_range("Rook::getAllMoves: position out of range");
   }
   shared_ptr<Piece> piece = cb->getSquare(p);
-  char team = piece->getTeam();
   vector<Position> res;
 
   vector<Position> dirs{

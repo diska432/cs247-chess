@@ -8,7 +8,7 @@ King::King(char team) : Piece('k', team) {};
 
 vector<Position> King::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   vector<Position> res;
-  Position temp{0, 0};
-  res.push_back(temp);
+  // Position temp{0, 0};
+  // res.push_back(temp);
   return res;
 }
