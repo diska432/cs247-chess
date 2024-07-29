@@ -162,3 +162,39 @@ bool Chessboard::validPawnPlacement() const {
   }
   return true;
 }
+
+std::vector<Position> Chessboard::getPiecePositions(char team) {
+  vector<Position>piecePositions;
+  for(int i = 0; i < 8; i++) {
+    for(int j = 0; j < 8; j++) {
+      Position temp = Position{i, j};
+      shared_ptr<Piece> tempPiece = getSquare(temp);
+      if(tempPiece->getTeam() == team) {
+        piecePositions.push_back(temp);
+      }
+    }
+  }
+  return piecePositions;
+}
+
+char Chessboard::opponentTeam(char team) {
+  if(team == 'w') {
+    return 'b';
+  } else {
+    return 'w';
+  }
+}
+
+bool Chessboard::isSquareUnderAttack(Position p, char team) {
+  vector<Position> opponentValidMoves;
+  vector<Position> opponentPiecePositions = getPiecePositions(opponentTeam(team));
+  for(Position temp : opponentPiecePositions) {
+    shared_ptr<Piece> piece = getSquare(temp);
+    vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), temp);
+    if(find(validMoves.begin(), validMoves.end(), p) != validMoves.end()){
+      return true;
+    }
+  }
+  return false;
+}
+
