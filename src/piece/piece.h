@@ -7,8 +7,10 @@ class Chessboard;
 
 class Piece {
   char symbol;
-  char team;
   bool moved = false;
+
+  protected:
+    char team;
 
   public:
     Piece(char symbol, char team);
