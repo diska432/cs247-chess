@@ -59,7 +59,6 @@ void Chess::makeMove(Position from, Position to, char promotion) {
   Move?
   */
   if (!getInGame()) {
-    cout << "yahaloo\n";
     throw GameNotStartedException();
   }
   if (!chessboard->isValidMove(from, to)) {
@@ -69,9 +68,12 @@ void Chess::makeMove(Position from, Position to, char promotion) {
   //   throw GameNotStartedException();
   // }
 
-  chessboard->makeMove(from, to, promotion);
-  graphicrender->addUpdatedPosition(make_shared<Position>(from));
-  graphicrender->addUpdatedPosition(make_shared<Position>(to));
+  vector<shared_ptr<Position>> posToUpdate = chessboard->makeMove(from, to, promotion);
+  for (auto &p : posToUpdate) {
+    graphicrender->addUpdatedPosition(p);
+  }
+  // graphicrender->addUpdatedPosition(make_shared<Position>(from));
+  // graphicrender->addUpdatedPosition(make_shared<Position>(to));
   switchTeam();
 }
 

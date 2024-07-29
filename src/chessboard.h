@@ -20,7 +20,7 @@ class Chessboard {
     void placePiece(Position p, std::shared_ptr<Piece>);
     std::shared_ptr<Piece> getSquare(Position&) const;
     void clearSquare(Position);
-    void makeMove(Position, Position, char);
+    std::vector<std::shared_ptr<Position>> makeMove(Position, Position, char);
     int getWidth() const;
     bool validNumberOfKings() const;
     bool validPawnPlacement() const;

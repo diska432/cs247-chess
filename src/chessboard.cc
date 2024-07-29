@@ -126,9 +126,11 @@ bool Chessboard::isValidMove(Position s, Position e) const {
   return true;
 }
 
-void Chessboard::makeMove(Position from, Position to, char promotion) {
+vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, char promotion) {
   std::cout << "Making move from " << from.getX() << "," << from.getY() << " to " << to.getX() << "," << to.getY() << std::endl;  
-  
+  vector<shared_ptr<Position>> res;
+  res.push_back(make_shared<Position>(from));
+  res.push_back(make_shared<Position>(to));
   shared_ptr<Piece> piece = getSquare(from);
   piece->setMoved(true);
   placePiece(to, piece);
@@ -151,6 +153,7 @@ void Chessboard::makeMove(Position from, Position to, char promotion) {
         Position enPassant = to + Position{yDiff, 0};
         if (enPassant == potentialEnPassant) {
           clearSquare(enPassant);
+          res.push_back(make_shared<Position>(enPassant));
         }
       }
       potentialEnPassant = Position{-1, -1};
@@ -186,6 +189,8 @@ void Chessboard::makeMove(Position from, Position to, char promotion) {
   if (piece->getSymbol() != 'p') {
     potentialEnPassant = Position{-1, -1};
   }
+
+  return res;
 }
 
 bool Chessboard::validNumberOfKings() const {
