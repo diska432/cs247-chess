@@ -14,10 +14,10 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard> cb, Position p)
     //check for bounds
     if(newX < 0 || newY > 7) break;
     //if position not empty
-    Position temp = Position{newX, newY};
-    if(cb->getSquare(temp) ) {
+    Position newPosition = Position{newX, newY};
+    if(cb->getSquare(newPosition) ) {
         //if same team then can't move
-        if(cb->getSquare(temp)->getTeam() == this->getTeam()) {
+        if(cb->getSquare(newPosition)->getTeam() == this->getTeam()) {
             break;
         } else {
             //if different teams can capture but can't move to squares after the piece
@@ -36,10 +36,10 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard> cb, Position p)
     //check for bounds
     if(newX < 0 || newY > 7) break;
     //if position not empty
-    Position temp = Position{newX, newY};
-    if(cb->getSquare(temp) ) {
+    Position newPosition = Position{newX, newY};
+    if(cb->getSquare(newPosition) ) {
         //if same team then can't move
-        if(cb->getSquare(temp)->getTeam() == this->getTeam()) {
+        if(cb->getSquare(newPosition)->getTeam() == this->getTeam()) {
             break;
         } else {
             //if different teams can capture but can't move to squares after the piece
@@ -58,10 +58,10 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard> cb, Position p)
     //check for bounds
     if(newX < 0 || newY > 7) break;
     //if position not empty
-    Position temp = Position{newX, newY};
-    if(cb->getSquare(temp) ) {
+    Position newPosition = Position{newX, newY};
+    if(cb->getSquare(newPosition) ) {
         //if same team then can't move
-        if(cb->getSquare(temp)->getTeam() == this->getTeam()) {
+        if(cb->getSquare(newPosition)->getTeam() == this->getTeam()) {
             break;
         } else {
             //if different teams can capture but can't move to squares after the piece
@@ -80,10 +80,10 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard> cb, Position p)
     //check for bounds
     if(newX < 0 || newY > 7) break;
     //if position not empty
-    Position temp = Position{newX, newY};
-    if(cb->getSquare(temp) ) {
+    Position newPosition = Position{newX, newY};
+    if(cb->getSquare(newPosition) ) {
         //if same team then can't move
-        if(cb->getSquare(temp)->getTeam() == this->getTeam()) {
+        if(cb->getSquare(newPosition)->getTeam() == this->getTeam()) {
             break;
         } else {
             //if different teams can capture but can't move to squares after the piece
