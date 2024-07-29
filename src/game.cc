@@ -11,8 +11,28 @@ Game::Game() : chess(make_shared<Chess>()), textrender(make_shared<TextRender>(c
 };
 
 void Game::play() {
-  // do {
-  for (;;) {
+
+  for(;;) {
+    int res = input->handleInput();
+
+    if (res == 0) {
+      // game is over, so break out and print scores
+      break;
+    }
+
+    // if (chess->getInSetup() || chess->getInGame()) {
+    textrender->render();
+    if (!chess->getInitBackdrop()) {
+      graphicrender->render();
+      chess->setInitBackdrop(true);
+    } else {
+      graphicrender->update();
+    }
+    // }
+  }
+  /*
+
+  do {
     int res = input->handleInput();
 
 
@@ -34,5 +54,6 @@ void Game::play() {
 
     // }
   }
-  // while (chess->getInGame() || chess->getInSetup());
+  while (chess->getInGame() || chess->getInSetup());
+  */
 }
