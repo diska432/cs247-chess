@@ -136,9 +136,11 @@ bool Chessboard::isValidMove(Position s, Position e) const {
 vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, char promotion) {
   std::cout << std::endl << std::endl << "Making move from " << from.toString() << " to " << to.toString() << std::endl;  
   vector<shared_ptr<Position>> res;
+
   res.push_back(make_shared<Position>(from));
   res.push_back(make_shared<Position>(to));
   shared_ptr<Piece> piece = getSquare(from);
+
   piece->setMoved(true);
   placePiece(to, piece);
   clearSquare(from);
@@ -171,17 +173,18 @@ vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, ch
         piece->getTeam() == 'b' && to.getX() == 0) {
       // this is a pawn that is now located on a back rank
       shared_ptr<Piece> promotedPawn;
+      cout << "WE HERE NOW\n";
       switch (promotion) {
-        case 'q':
+        case('q'):
           promotedPawn = make_shared<Queen>(piece->getTeam());
           break;
-        case 'r':
+        case('r'):
           promotedPawn = make_shared<Rook>(piece->getTeam());
           break;
-        case 'b':
+        case('b'):
           promotedPawn = make_shared<Bishop>(piece->getTeam());
           break;
-        case 'n':
+        case('n'):
           promotedPawn = make_shared<Knight>(piece->getTeam());
           break;
         default:
