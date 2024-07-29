@@ -32,6 +32,8 @@ class Chessboard {
     bool isSquareUnderAttack(Position, char);
 
     bool isInCheck(char team);
+    bool isCheckmate(char team);
+
     Position getKingPosition(char team);
 
     Position getPotentialEnPassant() const;
