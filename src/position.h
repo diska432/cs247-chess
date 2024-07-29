@@ -12,6 +12,8 @@ class Position {
     Position(std::string c);
     int getX() const;
     int getY() const;
+
+    bool operator==(const Position& rhs) const;
 };
 
 #endif

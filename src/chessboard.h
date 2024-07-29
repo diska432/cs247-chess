@@ -24,6 +24,7 @@ class Chessboard {
     int getWidth() const;
     bool validNumberOfKings() const;
     bool validPawnPlacement() const;
+    bool isValidMove(Position s, Position e) const;
 };
 
 #endif

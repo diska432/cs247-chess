@@ -13,3 +13,6 @@ int Position::getX() const { return x; };
 
 int Position::getY() const { return y; };
 
+bool Position::operator==(const Position& rhs) const {
+  return x == rhs.getX() && y == rhs.getY();
+}

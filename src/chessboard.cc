@@ -86,6 +86,42 @@ shared_ptr<Piece> Chessboard::getSquare(Position& p) const {
   }
 }
 
+bool Chessboard::isValidMove(Position s, Position e) const {
+  /*
+  check if coordinate is in range
+  check the move is valid based on the piece
+  check if it puts king in check and shit
+  */
+  if (!positionInRange(s)) {
+    cout << "Start position not on board\n";
+    return false;
+  }
+  if (!positionInRange(e)) {
+    cout << "End position not on board\n";
+    return false;
+  }
+
+  shared_ptr<Piece> piece = getSquare(s);
+  char type = piece->getSymbol();
+  char team = piece->getTeam();
+
+  if (piece == nullptr) {
+    return false; // can't move something that doesn't exist
+  }
+
+  vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), s);
+
+  if (find(validMoves.begin(), validMoves.end(), e) == validMoves.end()) {
+    return false;
+  }
+
+  /*
+  Add logic to check if the move will put the team's king in check
+  */
+
+  return true;
+}
+
 void Chessboard::makeMove(Position from, Position to, char promotion) {
   std::cout << "Making move from " << from.getX() << "," << from.getY() << " to " << to.getX() << "," << to.getY() << std::endl;  
   shared_ptr<Piece> piece = getSquare(from);
