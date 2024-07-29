@@ -12,3 +12,6 @@ const char* NotInSetupModeException::what() const throw () {
   return "Not in setup mode.";
 }
 
+const char* GameNotStartedException::what() const throw () {
+  return "Game has not started.";
+}

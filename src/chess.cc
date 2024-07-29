@@ -58,16 +58,21 @@ void Chess::makeMove(Position from, Position to, char promotion) {
   Capture?
   Move?
   */
-
-  Position fr{"c1"};
-  Position tom{2, 2};
+  if (!getInGame()) {
+    cout << "yahaloo\n";
+    throw GameNotStartedException();
+  }
   if (!chessboard->isValidMove(from, to)) {
     throw InvalidMoveException();
   }
-  // chessboard->isValidMove(from, to);
+  // if (!getInGame()) {
+  //   throw GameNotStartedException();
+  // }
+
   chessboard->makeMove(from, to, promotion);
   graphicrender->addUpdatedPosition(make_shared<Position>(from));
   graphicrender->addUpdatedPosition(make_shared<Position>(to));
+  switchTeam();
 }
 
 void Chess::makeUndo() {

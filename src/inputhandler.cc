@@ -86,6 +86,15 @@ void InputHandler::enterSetup() {
       string breaker(2*(game->getChessboard()->getWidth() + 1), '-');
       cout << breaker << "\n";
       textrender->render();
+
+      game->getGraphicRender()->addUpdatedPosition(make_shared<Position>(pos));
+      if (!game->getInitBackdrop()) {
+        graphicrender->render();
+        game->setInitBackdrop(true);
+      } else {
+        graphicrender->update();
+      }
+
     } else if (op1 == "-") {
       string coord;
       cin >> coord;
@@ -100,6 +109,14 @@ void InputHandler::enterSetup() {
       string breaker(2*(game->getChessboard()->getWidth() + 1), '-');
       cout << breaker << "\n";
       textrender->render();
+
+      game->getGraphicRender()->addUpdatedPosition(make_shared<Position>(pos));
+      if (!game->getInitBackdrop()) {
+        graphicrender->render();
+        game->setInitBackdrop(true);
+      } else {
+        graphicrender->update();
+      }
     } else if (op1 == "=") {
       string color;
       cin >> color;
@@ -144,6 +161,10 @@ int InputHandler::handleInput() {
   } else if (op1 == "resign") {
     cout << "someonen resigning type sh\n";
   } else if (op1 == "move") {
+    if (!game->getInGame()) {
+      cout << "Cannot move, game has not been started\n";
+      return 1;
+    }
     pair<Position, Position> move = game->players[game->currTeam]->getMove();
 
 
@@ -155,7 +176,7 @@ int InputHandler::handleInput() {
     }
     try {
       game->makeMove(move.first, move.second, promotion);
-      game->switchTeam();
+      // game->switchTeam();
 
       if (!game->players[game->currTeam]->isHumanPlayer()) {
         pair<Position, Position> move = game->players[game->currTeam]->getMove();
