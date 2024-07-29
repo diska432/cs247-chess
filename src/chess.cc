@@ -1,15 +1,27 @@
 #include "chess.h"
 #include "position.h"
 #include "move.h"
+#include "render/graphicrender.h"
 #include <memory>
 
 using namespace std;
 
 Chess::Chess() : chessboard(std::make_shared<Chessboard>()) {}
 
-shared_ptr<Chessboard> Chess::getChessboard() {
+shared_ptr<Chessboard> Chess::getChessboard() const {
   return chessboard;
 }
+
+shared_ptr<GraphicRender> Chess::getGraphicRender() const {
+  return graphicrender;
+}
+
+void Chess::setGraphicRender(shared_ptr<GraphicRender> gr) {
+  graphicrender = gr;
+}
+
+void Chess::setInitBackdrop(bool b) { initBackdrop = b; };
+bool Chess::getInitBackdrop() { return initBackdrop; };
 
 void Chess::setInGame(bool b) { inGame = b; };
 bool Chess::getInGame() { return inGame; };
@@ -47,7 +59,8 @@ void Chess::makeMove(Position from, Position to, char promotion) {
   Move?
   */
   chessboard->makeMove(from, to, promotion);
-
+  graphicrender->addUpdatedPosition(make_shared<Position>(from));
+  graphicrender->addUpdatedPosition(make_shared<Position>(to));
 }
 
 void Chess::makeUndo() {
