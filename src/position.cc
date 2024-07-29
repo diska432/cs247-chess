@@ -1,5 +1,6 @@
 #include "position.h"
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -13,6 +14,21 @@ int Position::getX() const { return x; };
 
 int Position::getY() const { return y; };
 
+string Position::toString() const {
+  char l = 'a' + y;
+  string res = l + to_string(x+1);
+  return res;
+}
+
 bool Position::operator==(const Position& rhs) const {
   return x == rhs.getX() && y == rhs.getY();
+}
+
+Position Position::operator+(const Position& p) const {
+  return Position{x + p.getX(), y + p.getY()};
+}
+
+ostream& operator<<(ostream& out, const Position& p) {
+  out << p.toString();
+  return out;
 }
