@@ -230,7 +230,7 @@ std::vector<Position> Chessboard::getPiecePositions(char team) {
     for(int j = 0; j < 8; j++) {
       Position temp = Position{i, j};
       shared_ptr<Piece> tempPiece = getSquare(temp);
-      if(!tempPiece && tempPiece->getTeam() == team) {
+      if(tempPiece != nullptr && tempPiece->getTeam() == team) {
         piecePositions.push_back(temp);
       }
     }
@@ -251,6 +251,11 @@ bool Chessboard::isSquareUnderAttack(Position p, char team) {
   vector<Position> opponentPiecePositions = getPiecePositions(opponentTeam(team));
   for(Position temp : opponentPiecePositions) {
     shared_ptr<Piece> piece = getSquare(temp);
+
+    if (piece == nullptr) {
+      continue;
+    } 
+
     vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), temp);
     if(find(validMoves.begin(), validMoves.end(), p) != validMoves.end()){
       return true;

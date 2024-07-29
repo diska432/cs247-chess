@@ -16,7 +16,6 @@ vector<Position> King::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
     throw std::out_of_range("King::getAllMoves: position out of range");
   }
   shared_ptr<Piece> piece = cb->getSquare(p);
-  char team = piece->getTeam();
 
   vector<Position> dirs{
     Position{1, 0}, Position{1, 1}, Position{0, 1}, Position{-1, 1},
@@ -32,9 +31,21 @@ vector<Position> King::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
       //can only move if not threatened
       // only accept position if it's empty or 
       // it's a capture on a piece
-      if((candidate == nullptr || candidate->getTeam() != team) && !cb->isSquareUnderAttack(temp, team)) {
-        res.push_back(temp);
+
+      if (candidate != nullptr) {
+
+        if (candidate->getTeam() != team  ) {
+          res.push_back(temp); // && !cb->isSquareUnderAttack(temp, team)
+        }
       }
+      else { 
+        if (true) {
+          res.push_back(temp); //!cb->isSquareUnderAttack(temp, team)
+        }
+      }
+      // if((candidate == nullptr || candidate->getTeam() != team) && !cb->isSquareUnderAttack(temp, team)) {
+      //   res.push_back(temp);
+      // }
     }
   }
 
