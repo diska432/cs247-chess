@@ -21,16 +21,24 @@ pair<Position, Position> Level1::getMove() {
         if (piece != nullptr && piece->getTeam() == color) {
           vector<Position> moves = piece->getAllMoves(chessboard, q);
           for (Position move : moves) {
-            if (move.getX() != 0 && move.getY() != 0) {
+
+            if (move.getX() != 0 || move.getY() != 0) {
               valid_moves.push_back(make_pair(q, move));
             }
+            
+            cout << valid_moves.size() << endl;
           }
         }
 
     }
   }
 
-  
+  for (auto move : valid_moves) {
+    Position from = move.first;
+    Position to = move.second;
+    cout << from.toString()  << " | " << to.toString() << endl;
+
+  }
   
   srand(time(0));
   int random_variable = (rand() % valid_moves.size());
