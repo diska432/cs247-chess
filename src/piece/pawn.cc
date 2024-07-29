@@ -11,15 +11,14 @@ vector<Position> Pawn::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
     throw std::out_of_range("Rook::getAllMoves: position out of range");
   }
   shared_ptr<Piece> piece = cb->getSquare(p);
-  char team = piece->getTeam();
   vector<Position> res;
 
-  int yVector = piece->getTeam() == 'w' ? 1 : -1;
+  int yVector = team == 'w' ? 1 : -1;
   vector<Position> dirs = {Position{yVector, 0}};
   // Position dir = Position{0, yVector};
 
   // consider an unmoved pawn that can move 2 spaces
-  if (!piece->getMoved()) {
+  if (piece != nullptr && !piece->getMoved()) {
     Position forward = p + dirs[0];
     Position forwardTwice = forward + dirs[0];
     cout << forward << " | " << forwardTwice << "\n";
