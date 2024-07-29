@@ -133,7 +133,7 @@ bool Chessboard::isValidMove(Position s, Position e) const {
   }
 }
 
-vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, char promotion) {
+vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, char promotion = 'q') {
   std::cout << std::endl << std::endl << "Making move from " << from.toString() << " to " << to.toString() << std::endl;  
   vector<shared_ptr<Position>> res;
 
@@ -318,6 +318,35 @@ Position Chessboard::getKingPosition(char team) {
 bool Chessboard::isInCheck(char team) {
   Position kingPos = getKingPosition(team);
   return isSquareUnderAttack(kingPos, team);
+}
+
+bool Chessboard::isStalemate(char team) {
+  if (isInCheck(team)) {
+    return false;
+  }
+
+  vector<shared_ptr<Position>> piecePositions = getPiecePositions(team);
+  vector<Position> totalValidMoves;
+
+  for(auto &pos : piecePositions) {
+    shared_ptr<Piece> piece = getSquare(*pos);
+    vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), *pos);
+    for (auto &move : validMoves) {
+      if (isValidMove(*pos, move))
+        totalValidMoves.push_back(move);
+    }
+  }
+
+  if (totalValidMoves.size() == 0) {
+    std::cout<<"Stalemate! Game over\n";
+    return true;
+  }
+
+  // for (auto& validMove: totalValidMoves) {
+  //   std::cout << team << ", " << validMove.toString() << std::endl;
+  // }
+
+  return false;
 }
 
 bool Chessboard::isCheckmate(char team) {

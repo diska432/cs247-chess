@@ -184,7 +184,6 @@ int InputHandler::handleInput() {
 
     try {
       game->makeMove(move.first, move.second, promotion);
-
     } catch (exception& e) {
       cout << "Invalid move. Try again.\n";
     }

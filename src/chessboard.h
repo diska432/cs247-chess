@@ -37,6 +37,7 @@ class Chessboard {
     Position getKingPosition(char team);
 
     Position getPotentialEnPassant() const;
+    bool isStalemate(char team);
 
 };
 
