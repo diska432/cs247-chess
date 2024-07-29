@@ -136,9 +136,11 @@ bool Chessboard::isValidMove(Position s, Position e) const {
 vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, char promotion = 'q') {
   std::cout << std::endl << std::endl << "Making move from " << from.toString() << " to " << to.toString() << std::endl;  
   vector<shared_ptr<Position>> res;
+
   res.push_back(make_shared<Position>(from));
   res.push_back(make_shared<Position>(to));
   shared_ptr<Piece> piece = getSquare(from);
+
   piece->setMoved(true);
   placePiece(to, piece);
   clearSquare(from);
@@ -171,17 +173,18 @@ vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, ch
         piece->getTeam() == 'b' && to.getX() == 0) {
       // this is a pawn that is now located on a back rank
       shared_ptr<Piece> promotedPawn;
+      cout << "WE HERE NOW\n";
       switch (promotion) {
-        case 'q':
+        case('q'):
           promotedPawn = make_shared<Queen>(piece->getTeam());
           break;
-        case 'r':
+        case('r'):
           promotedPawn = make_shared<Rook>(piece->getTeam());
           break;
-        case 'b':
+        case('b'):
           promotedPawn = make_shared<Bishop>(piece->getTeam());
           break;
-        case 'n':
+        case('n'):
           promotedPawn = make_shared<Knight>(piece->getTeam());
           break;
         default:
@@ -193,9 +196,41 @@ vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, ch
     }
   }
 
+  if (piece->getSymbol() == 'k') {
+    Position pr = to - from;
+    if (abs(pr.getY()) == 2) {
+      Position dir = Position{pr.getX()/abs(pr.getX()), pr.getY()/abs(pr.getY())};
+      Position iter = from;
+      shared_ptr<Piece> pce;
+      while (!pce || pce->getSymbol() != 'r') {
+        iter = iter + dir;
+        pce = getSquare(iter);
+      }
+
+      // Move rook to opposite side of king
+      clearSquare(iter);
+      pce->setMoved(true);
+      placePiece(to-dir, pce);
+
+      Position toAdd = Position{from};
+      while (!(toAdd == to)) {
+        res.push_back(make_shared<Position>(toAdd));
+        toAdd = toAdd + dir;
+      }
+      res.push_back(make_shared<Position>(iter));
+    }
+  }
+
   if (piece->getSymbol() != 'p') {
     potentialEnPassant = Position{-1, -1};
   }
+
+  // cout << "\nTO UPDATE ";
+
+  // for (auto &ni : res) {
+  //   cout << *ni << " ";
+  // }
+  // cout << "\n";
 
   return res;
 }

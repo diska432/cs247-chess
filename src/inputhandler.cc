@@ -174,19 +174,19 @@ int InputHandler::handleInput() {
     }
     pair<Position, Position> move = game->players[game->currTeam]->getMove();
 
-    char promotion = '_';
-    if (cin.peek() != '\n') {
-      cin >> promotion;
+    char promotion = 'q';
+
+    if (game->players[game->currTeam]->isHumanPlayer()) {
+      if (cin.peek() != '\n') {
+        cin >> promotion;
+      }
     }
+
     try {
       game->makeMove(move.first, move.second, promotion);
-      // game->switchTeam();
     } catch (exception& e) {
       cout << "Invalid move. Try again.\n";
     }
-
-    // cout << "someone moving type shi\n";
-    // game->getChessboard()->makeMove();
   } 
   else if (op1 == "game") {
     if (game->getInGame()) {
