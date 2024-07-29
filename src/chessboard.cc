@@ -110,7 +110,7 @@ bool Chessboard::isValidMove(Position s, Position e) const {
   }
 
   vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), s);
-  if (type != 'r' || type != 'b' || type != 'n') {
+  if (type != 'r' || type != 'b' || type != 'n' || type != 'q') {
     return true;
   }
   if (find(validMoves.begin(), validMoves.end(), e) == validMoves.end()) {
