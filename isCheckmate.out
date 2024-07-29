@@ -1,0 +1,495 @@
+a6 | a5
+b6 | b5
+c6 | c5
+d6 | d5
+e6 | e5
+f6 | f5
+g6 | g5
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+e3 | e4
+f3 | f4
+g3 | g4
+h3 | h4
+8 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ 
+7 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ 
+6   _   _   _   _ 
+5 _   _   _   _   
+4   _   _   _   _ 
+3 _   _   _   _   
+2 ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ 
+1 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ 
+
+  a b c d e f g h 
+
+e3 | e4
+a6 | a5
+b6 | b5
+c6 | c5
+d6 | d5
+e6 | e5
+f6 | f5
+g6 | g5
+h6 | h5
+
+
+Making move from e2 to e4
+a6 | a5
+b6 | b5
+c6 | c5
+d6 | d5
+e6 | e5
+f6 | f5
+g6 | g5
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+8 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ 
+7 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ 
+6   _   _   _   _ 
+5 _   _   _   _   
+4   _   _ ♙ _   _ 
+3 _   _   _   _   
+2 ♙ ♙ ♙ ♙   ♙ ♙ ♙ 
+1 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ 
+
+  a b c d e f g h 
+
+e6 | e5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+
+
+Making move from e7 to e5
+a6 | a5
+b6 | b5
+c6 | c5
+d6 | d5
+f6 | f5
+g6 | g5
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+8 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ 
+7 ♟ ♟ ♟ ♟ _ ♟ ♟ ♟ 
+6   _   _   _   _ 
+5 _   _   ♟   _   
+4   _   _ ♙ _   _ 
+3 _   _   _   _   
+2 ♙ ♙ ♙ ♙   ♙ ♙ ♙ 
+1 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ 
+
+  a b c d e f g h 
+
+a6 | a5
+b6 | b5
+c6 | c5
+d6 | d5
+f6 | f5
+g6 | g5
+h6 | h5
+
+
+Making move from f1 to c4
+a6 | a5
+b6 | b5
+c6 | c5
+d6 | d5
+f6 | f5
+g6 | g5
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+8 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ 
+7 ♟ ♟ ♟ ♟ _ ♟ ♟ ♟ 
+6   _   _   _   _ 
+5 _   _   ♟   _   
+4   _ ♗ _ ♙ _   _ 
+3 _   _   _   _   
+2 ♙ ♙ ♙ ♙   ♙ ♙ ♙ 
+1 ♖ ♘ ♗ ♕ ♔   ♘ ♖ 
+
+  a b c d e f g h 
+
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+
+
+Making move from b8 to c6
+a6 | a5
+b6 | b5
+c6 | c5
+d6 | d5
+f6 | f5
+g6 | g5
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+8 ♜ _ ♝ ♛ ♚ ♝ ♞ ♜ 
+7 ♟ ♟ ♟ ♟ _ ♟ ♟ ♟ 
+6   _ ♞ _   _   _ 
+5 _   _   ♟   _   
+4   _ ♗ _ ♙ _   _ 
+3 _   _   _   _   
+2 ♙ ♙ ♙ ♙   ♙ ♙ ♙ 
+1 ♖ ♘ ♗ ♕ ♔   ♘ ♖ 
+
+  a b c d e f g h 
+
+a6 | a5
+b6 | b5
+c6 | c5
+d6 | d5
+f6 | f5
+g6 | g5
+h6 | h5
+
+
+Making move from d1 to f3
+a6 | a5
+b6 | b5
+c6 | c5
+d6 | d5
+f6 | f5
+g6 | g5
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+8 ♜ _ ♝ ♛ ♚ ♝ ♞ ♜ 
+7 ♟ ♟ ♟ ♟ _ ♟ ♟ ♟ 
+6   _ ♞ _   _   _ 
+5 _   _   ♟   _   
+4   _ ♗ _ ♙ _   _ 
+3 _   _   _ ♕ _   
+2 ♙ ♙ ♙ ♙   ♙ ♙ ♙ 
+1 ♖ ♘ ♗   ♔   ♘ ♖ 
+
+  a b c d e f g h 
+
+a6 | a5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+
+
+Making move from a7 to a5
+b6 | b5
+c6 | c5
+d6 | d5
+f6 | f5
+g6 | g5
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+8 ♜ _ ♝ ♛ ♚ ♝ ♞ ♜ 
+7 _ ♟ ♟ ♟ _ ♟ ♟ ♟ 
+6   _ ♞ _   _   _ 
+5 ♟   _   ♟   _   
+4   _ ♗ _ ♙ _   _ 
+3 _   _   _ ♕ _   
+2 ♙ ♙ ♙ ♙   ♙ ♙ ♙ 
+1 ♖ ♘ ♗   ♔   ♘ ♖ 
+
+  a b c d e f g h 
+
+b6 | b5
+c6 | c5
+d6 | d5
+g6 | g5
+h6 | h5
+
+
+Making move from f3 to f7
+b6 | b5
+c6 | c5
+d6 | d5
+g6 | g5
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+b6 | b5
+b6 | b5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+b6 | b5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+c6 | c5
+d6 | d5
+d6 | d5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+d6 | d5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+g6 | g5
+g6 | g5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+g6 | g5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+h6 | h5
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+h6 | h5
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+a3 | a4
+b3 | b4
+c3 | c4
+d3 | d4
+f3 | f4
+g3 | g4
+h3 | h4
+Checkmate! White wins!
+Final Score: 
+White: 1
+Black: 0
