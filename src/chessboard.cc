@@ -87,26 +87,26 @@ shared_ptr<Piece> Chessboard::getSquare(Position& p) const {
 }
 
 void Chessboard::makeMove(Position from, Position to, char promotion) {
-  std::cout << "Making move from " << from.getX() << "," << from.getY() << " to " << to.getX() << "," << to.getY() << std::endl;  
+  // std::cout << "Making move from " << from.getX() << "," << from.getY() << " to " << to.getX() << "," << to.getY() << std::endl;  
   shared_ptr<Piece> piece = getSquare(from);
-  vector<Position> allMoves = piece->getAllMoves(*this, from);
-  bool foundLegalMove = false;
-  for (int i=0; i<allMoves.size(); i++) {
-    if(to.getX() == allMoves[i].getX() && to.getY() == allMoves[i].getY()) {
-      cout << "this move is legal " << endl;
-      foundLegalMove = true;
-    }
-    Position p = allMoves[i];
-    cout << p << "\n";
-  }
-  if(!foundLegalMove) {
-    cout << "Throw illegal move exception" << endl; 
-  } else {
-    placePiece(to, piece);
-    clearSquare(from);
-  }
-  // placePiece(to, piece);
-  // clearSquare(from);
+  // vector<Position> allMoves = piece->getAllMoves(make_shared<Chessboard>(*this), from);
+  // bool foundLegalMove = false;
+  // for (int i=0; i<allMoves.size(); i++) {
+  //   if(to.getX() == allMoves[i].getX() && to.getY() == allMoves[i].getY()) {
+  //     cout << "this move is legal " << endl;
+  //     foundLegalMove = true;
+  //   }
+  //   Position p = allMoves[i];
+  //   cout << p << "\n";
+  // }
+  // if(!foundLegalMove) {
+  //   cout << "Throw illegal move exception" << endl; 
+  // } else {
+  //   placePiece(to, piece);
+  //   clearSquare(from);
+  // }
+  placePiece(to, piece);
+  clearSquare(from);
 }
 
 bool Chessboard::validNumberOfKings() const {

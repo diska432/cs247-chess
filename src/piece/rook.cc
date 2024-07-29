@@ -8,7 +8,7 @@ Rook::Rook(char team) : Piece('r', team) {};
 
 vector<Position> Rook::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   vector<Position> res;
-  
+/*
   //check for everything to the left of rook in case rook is not on the edge
   for(int i = p.getY(); i >= 0; --i) {
     //check if position is not empty
@@ -77,5 +77,6 @@ vector<Position> Rook::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
         res.push_back({i, p.getY()});
     }
   }
+  */
   return res;
 }

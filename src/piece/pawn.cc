@@ -11,6 +11,7 @@ vector<Position> Pawn::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
 //   Position temp{0, 0};
 //   res.push_back(temp);
 //   return res;
+/*
   bool blocked = false;
   if(cb.getSquare({p.getX(), p.getY()})->getTeam() == 'w') {
     //if position in front of the pawn is not empty
@@ -53,7 +54,7 @@ vector<Position> Pawn::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
         } 
     }
   }
-
+    */
   // en passant yet to be implemented
 
   return res;

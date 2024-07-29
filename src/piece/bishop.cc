@@ -6,7 +6,7 @@ using namespace std;
 
 Bishop::Bishop(char team) : Piece('b', team) {};
 
-vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard>, Position p) {
+vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   vector<Position> res;
   for(int i = 0; i < 8; i++) {
     int newX = p.getX() - i;
@@ -14,9 +14,10 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard>, Position p) {
     //check for bounds
     if(newX < 0 || newY > 7) break;
     //if position not empty
-    if(cb.getSquare({newX, newY}) ) {
+    Position temp = Position{newX, newY};
+    if(cb->getSquare(temp) ) {
         //if same team then can't move
-        if(cb.getSquare({newX, newY})->getTeam() == this->getTeam()) {
+        if(cb->getSquare(temp)->getTeam() == this->getTeam()) {
             break;
         } else {
             //if different teams can capture but can't move to squares after the piece
@@ -35,9 +36,10 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard>, Position p) {
     //check for bounds
     if(newX < 0 || newY > 7) break;
     //if position not empty
-    if(cb.getSquare({newX, newY}) ) {
+    Position temp = Position{newX, newY};
+    if(cb->getSquare(temp) ) {
         //if same team then can't move
-        if(cb.getSquare({newX, newY})->getTeam() == this->getTeam()) {
+        if(cb->getSquare(temp)->getTeam() == this->getTeam()) {
             break;
         } else {
             //if different teams can capture but can't move to squares after the piece
@@ -56,9 +58,10 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard>, Position p) {
     //check for bounds
     if(newX < 0 || newY > 7) break;
     //if position not empty
-    if(cb.getSquare({newX, newY}) ) {
+    Position temp = Position{newX, newY};
+    if(cb->getSquare(temp) ) {
         //if same team then can't move
-        if(cb.getSquare({newX, newY})->getTeam() == this->getTeam()) {
+        if(cb->getSquare(temp)->getTeam() == this->getTeam()) {
             break;
         } else {
             //if different teams can capture but can't move to squares after the piece
@@ -77,9 +80,10 @@ vector<Position> Bishop::getAllMoves(std::shared_ptr<Chessboard>, Position p) {
     //check for bounds
     if(newX < 0 || newY > 7) break;
     //if position not empty
-    if(cb.getSquare({newX, newY}) ) {
+    Position temp = Position{newX, newY};
+    if(cb->getSquare(temp) ) {
         //if same team then can't move
-        if(cb.getSquare({newX, newY})->getTeam() == this->getTeam()) {
+        if(cb->getSquare(temp)->getTeam() == this->getTeam()) {
             break;
         } else {
             //if different teams can capture but can't move to squares after the piece

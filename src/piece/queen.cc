@@ -8,6 +8,7 @@ Queen::Queen(char team) : Piece('q', team) {};
 
 vector<Position> Queen::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   vector<Position> res;
+  /*
   for(int i = 0; i < 8; i++) {
     int newX = p.getX() - i;
     int newY = p.getY() + i;
@@ -156,6 +157,7 @@ vector<Position> Queen::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) 
         res.push_back({i, p.getY()});
     }
   }
+  */
 
   return res;
 }
