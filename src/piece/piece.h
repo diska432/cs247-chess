@@ -8,12 +8,16 @@ class Chessboard;
 class Piece {
   char symbol;
   char team;
+  bool moved = false;
 
   public:
     Piece(char symbol, char team);
     virtual std::vector<Position>getAllMoves(std::shared_ptr<Chessboard>, Position p) = 0;
     char getTeam() const;
     char getSymbol() const;
+
+    void setMoved(bool b);
+    bool getMoved() const;
 };
 
 #endif

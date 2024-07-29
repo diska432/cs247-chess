@@ -12,3 +12,6 @@ char Piece::getSymbol() const {
 char Piece::getTeam() const {
   return team;
 }
+
+void Piece::setMoved(bool b) { moved = b; };
+bool Piece::getMoved() const { return moved; };
