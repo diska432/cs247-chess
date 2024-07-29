@@ -17,6 +17,7 @@ class Chess {
     std::shared_ptr<Chessboard> chessboard;
     std::shared_ptr<std::stack<AtomicMove>> moves;
     std::shared_ptr<GraphicRender> graphicrender;
+    std::vector<double>scores{0, 0};
 
     bool inSetup = false;
     bool inGame = false;
@@ -51,6 +52,11 @@ class Chess {
     void setupPlacePiece(Position p, std::shared_ptr<Piece> piece);
     void setupRemovePiece(Position p);
     void setupSetCurrTeam(char c);
+    void resign();
+    void getFinalScores();
+    std::string getWinner();
+
+
 };
 
 #endif

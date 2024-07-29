@@ -89,3 +89,31 @@ void Chess::makeUndo() {
     // stack<Move> sequence = lastMove.moveStack;
   }
 }
+
+void Chess::resign() {
+  scores[currTeam == 'w' ? 1 : 0]++;
+  if(currTeam == 'w') {
+    cout << "Black wins!\n";
+  } else {
+    cout << "White wins!\n";
+  }
+}
+
+void Chess::getFinalScores() {
+  cout << "Final Score:\n";
+  cout << "White: " << scores[0] << endl;
+  cout << "Black: " << scores[1] << endl;
+}
+
+string Chess::getWinner() {
+  if(chessboard->isStalemate(currTeam)){
+    scores[0] += 0.5;
+    scores[1] += 0.5;
+    return "Stalemate";
+  }
+  if(chessboard->isCheckmate(currTeam)) {
+    scores[currTeam == 'w' ? 1 : 0]++;
+    return currTeam == 'w' ? "Black" : "White";
+  }
+  return "";
+}
