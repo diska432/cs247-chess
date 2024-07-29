@@ -38,7 +38,7 @@ string TextRender::getChar(const shared_ptr<Piece>& piece) const {
   char team = piece->getTeam();
   char symbol = piece->getSymbol();
 
-  if (team == 'b') {
+  if (team == 'w') {
     switch (symbol) {
       case 'p':
         return "♙";
@@ -61,7 +61,7 @@ string TextRender::getChar(const shared_ptr<Piece>& piece) const {
       default:
         return " ";
     }
-  } else if (team == 'w') {
+  } else if (team == 'b') {
     switch (symbol) {
       case 'p':
         return "♟";
