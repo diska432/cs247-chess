@@ -6,7 +6,7 @@ using namespace std;
 
 Rook::Rook(char team) : Piece('r', team) {};
 
-vector<Position> Rook::getAllMoves(Chessboard &cb, Position p) {
+vector<Position> Rook::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   vector<Position> res;
   
   //check for everything to the left of rook in case rook is not on the edge

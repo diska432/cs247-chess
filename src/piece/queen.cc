@@ -6,7 +6,7 @@ using namespace std;
 
 Queen::Queen(char team) : Piece('q', team) {};
 
-vector<Position> Queen::getAllMoves(Chessboard &cb, Position p) {
+vector<Position> Queen::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   vector<Position> res;
   for(int i = 0; i < 8; i++) {
     int newX = p.getX() - i;

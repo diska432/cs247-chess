@@ -6,7 +6,7 @@
 
 using namespace std;
 
-TextRender::TextRender(Chessboard *chessboard, ostream& out) : Render(chessboard), out(out) {};
+TextRender::TextRender(shared_ptr<Chessboard> chessboard, ostream& out) : Render(chessboard), out(out) {};
 
 void TextRender::render() {
   for (int i=0; i<8; i++) {
