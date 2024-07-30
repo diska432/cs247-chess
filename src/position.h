@@ -17,6 +17,7 @@ class Position {
     bool operator==(const Position& rhs) const;
     Position operator+(const Position& p) const;
     Position operator-(const Position& p) const;
+    bool operator<(const Position& other) const;
 
     friend std::ostream& operator<<(std::ostream& out, const Position& p);
     std::string toString() const;

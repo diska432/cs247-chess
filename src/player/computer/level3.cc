@@ -72,7 +72,9 @@ pair<Position, Position> Level3::getMove() {
       if (piece != nullptr && piece->getTeam() == color) {
         vector<Position> moves = piece->getAllMoves(chessboard, q);
         for (Position move : moves) {
-          valid_moves.push_back(make_pair(q, move));
+          if (chessboard->isValidMove(q, move)) {
+            valid_moves.push_back(make_pair(q, move));
+          }
         }
       }
     }
