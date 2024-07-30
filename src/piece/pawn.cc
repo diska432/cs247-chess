@@ -8,7 +8,7 @@ Pawn::Pawn(char team) : Piece('p', team) {};
 
 vector<Position> Pawn::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
   if (!cb->positionInRange(p)) {
-    throw std::out_of_range("Rook::getAllMoves: position out of range");
+    throw std::out_of_range("Pawn::getAllMoves: position out of range");
   }
   shared_ptr<Piece> piece = cb->getSquare(p);
   vector<Position> res;
