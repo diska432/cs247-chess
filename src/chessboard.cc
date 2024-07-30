@@ -8,6 +8,7 @@
 #include "piece/queen.h"
 #include "piece/king.h"
 #include <memory>
+#include <algorithm>
 
 using namespace std;
 
