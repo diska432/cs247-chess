@@ -80,11 +80,6 @@ vector<Position> King::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
       }
     }
   }
-  // cout << "King ";
-
-  // for (auto &x : res) {
-  //   cout << x << " ";
-  // }
 
   return res;
 }

@@ -56,7 +56,6 @@ pair<Position, Position> Level2::getMove() {
     }
   }
 
-
   srand(time(0));
 
   // prefer checks
@@ -80,7 +79,6 @@ pair<Position, Position> Level2::getMove() {
     return capture_moves[random_variable];
   }
 
-  
   int random_variable = (rand() % valid_moves.size());
   return valid_moves[random_variable];
 }

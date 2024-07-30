@@ -22,10 +22,6 @@
 
 using namespace std;
 
-/*
-TODO: add helper message and aid ui for CLI
-*/
-
 shared_ptr<Computer> InputHandler::createLevel(int level, char color) {
   switch (level) {
     case 0:
@@ -213,8 +209,6 @@ int InputHandler::handleInput() {
       game->setInGame(false);
       return 2;
     }
-    // cout << "someone moving type shi\n";
-    // game->getChessboard()->makeMove();
   } else if (op1 == "game") {
     if (game->getInGame()) {
       cout << "You are already in a game. Please finish the current game before starting a new one.\n";

@@ -19,7 +19,6 @@ vector<Position> Rook::getAllMoves(shared_ptr<Chessboard> cb, Position p) {
   
   for (auto &pr : dirs) {
     Position temp = p + pr;
-    // Position temp{p.getX() + pr.first, p.getY() + pr.second};
     while (cb->positionInRange(temp)) {
       shared_ptr<Piece> candidate = cb->getSquare(temp);
       if (candidate != nullptr) {

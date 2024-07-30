@@ -12,15 +12,12 @@ void TextRender::render() {
   for (int i=0; i<8; i++) {
     out << 8-i << " ";
     for (int j=0; j<8; j++) {
-      // Position p{j, 7-i};
       Position p{7-i, j};
-      // cout << "a ";
       shared_ptr<Piece> piece = chessboard->getSquare(p);
       if (piece != nullptr) {
         cout << getChar(piece) << " ";
       } else {
         cout << (isWhite(p) ? "_" : " ") << " ";
-        // cout << "  ";
       }
     }
     out << "\n";

@@ -15,7 +15,6 @@ vector<Position> Pawn::getAllMoves(std::shared_ptr<Chessboard> cb, Position p) {
 
   int yVector = team == 'w' ? 1 : -1;
   vector<Position> dirs = {Position{yVector, 0}};
-  // Position dir = Position{0, yVector};
 
   // consider an unmoved pawn that can move 2 spaces
   if (piece != nullptr && !piece->getMoved()) {

@@ -12,10 +12,6 @@
 
 using namespace std;
 
-/*
-TODO: properly handle exceptions and invalid inputs
-*/
-
 Chessboard::Chessboard() : board(8, vector<shared_ptr<Piece>>(8, nullptr)) {
   for (int i=0; i<width; i++) {
     board[1][i] = make_shared<Pawn>('w'); 
@@ -113,16 +109,10 @@ bool Chessboard::isValidMove(Position s, Position e) const {
   char team = piece->getTeam();
 
   vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), s);
-  // if (type != 'r' || type != 'b' || type != 'n' || type != 'q' || type != 'p') {
-  //   return true;
-  // }
+
   if (find(validMoves.begin(), validMoves.end(), e) == validMoves.end()) {
     return false;
   }
-
-  /*
-  Add logic to check if the move will put the team's king in check
-  */
 
   Chessboard mock{*this};
   mock.clearSquare(s);
@@ -225,13 +215,6 @@ vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, ch
     potentialEnPassant = Position{-1, -1};
   }
 
-  // cout << "\nTO UPDATE ";
-
-  // for (auto &ni : res) {
-  //   cout << *ni << " ";
-  // }
-  // cout << "\n";
-
   return res;
 }
 
@@ -241,7 +224,6 @@ bool Chessboard::validNumberOfKings() const {
   for (int i=0; i<width; i++) {
     for (int j=0; j<width; j++) {
       shared_ptr<Piece> curr = board[i][j];
-      // if (curr == nullptr) continue;
       if (curr && curr->getSymbol() == 'k') {
         if (curr->getTeam() == 'w') {
           white++;
@@ -251,7 +233,6 @@ bool Chessboard::validNumberOfKings() const {
       }
     }
   }
-  // return true;
   return (white == 1 && black == 1);
 }
 
@@ -291,9 +272,9 @@ char Chessboard::opponentTeam(char team) {
 bool Chessboard::isSquareUnderAttack(Position p, char team) {
   vector<shared_ptr<Position>> opponentPiecePositions = getPiecePositions(opponentTeam(team));
   
-  for(auto &yo : opponentPiecePositions) {
-    shared_ptr<Piece> piece = getSquare(*yo);
-    vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), *yo);
+  for(auto &pos : opponentPiecePositions) {
+    shared_ptr<Piece> piece = getSquare(*pos);
+    vector<Position> validMoves = piece->getAllMoves(make_shared<Chessboard>(*this), *pos);
     if(find(validMoves.begin(), validMoves.end(), p) != validMoves.end()){
       return true;
     }
@@ -341,10 +322,6 @@ bool Chessboard::isStalemate(char team) {
     std::cout<<"Stalemate! Game over\n";
     return true;
   }
-
-  // for (auto& validMove: totalValidMoves) {
-  //   std::cout << team << ", " << validMove.toString() << std::endl;
-  // }
 
   return false;
 }
