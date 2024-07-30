@@ -19,8 +19,8 @@ pair<Position, Position> Level2::getMove() {
   vector<Position> opponent_pieces;
   Position king_position;
 
-  for (int i=0; i<8; i++) {
-    for (int j=0; j<8; j++) {
+  for (int i=0; i<chessboard->getWidth(); i++) {
+    for (int j=0; j<chessboard->getWidth(); j++) {
         Position q{i, j};
         shared_ptr<Piece> piece = chessboard->getSquare(q);
 

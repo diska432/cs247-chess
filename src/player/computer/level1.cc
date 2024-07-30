@@ -13,8 +13,8 @@ pair<Position, Position> Level1::getMove() {
   Position p;
   vector<pair<Position, Position>> valid_moves;
 
-  for (int i=0; i<8; i++) {
-    for (int j=0; j<8; j++) {
+  for (int i=0; i<chessboard->getWidth(); i++) {
+    for (int j=0; j<chessboard->getWidth(); j++) {
         Position q{i, j};
         shared_ptr<Piece> piece = chessboard->getSquare(q);
 

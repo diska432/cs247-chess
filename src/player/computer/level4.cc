@@ -30,8 +30,8 @@ int Level4::weighOutcomes() {
   vector<pair<shared_ptr<Piece>, Position>> my_pieces;
   vector<pair<shared_ptr<Piece>, Position>> opponent_pieces;
 
-  for (int i = 0; i < 8; i++) {
-    for (int j = 0; j < 8; j++) {
+  for (int i = 0; i < chessboard->getWidth(); i++) {
+    for (int j = 0; j < chessboard->getWidth(); j++) {
       Position q{i, j};
       shared_ptr<Piece> piece = chessboard->getSquare(q);
 
@@ -99,8 +99,8 @@ int Level4::weighOutcomes() {
 pair<Position, Position> Level4::getMove() {
   vector<pair<Position, Position>> valid_moves; // start loc, end loc
 
-  for (int i = 0; i < 8; i++) {
-    for (int j = 0; j < 8; j++) {
+  for (int i = 0; i < chessboard->getWidth(); i++) {
+    for (int j = 0; j < chessboard->getWidth(); j++) {
       Position q{i, j};
       shared_ptr<Piece> piece = chessboard->getSquare(q);
 
