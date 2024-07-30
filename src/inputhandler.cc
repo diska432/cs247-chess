@@ -174,6 +174,8 @@ int InputHandler::handleInput() {
       cout << "Cannot resign, game has not been started\n";
       return 1;
     }
+    textrender->render();
+    graphicrender->update();
     game->resign();
     game->setInGame(false);
     game->currTeam = 'w';
@@ -207,6 +209,8 @@ int InputHandler::handleInput() {
       } else {
         cout << "Checkmate! " << winner << " wins!\n";
       }
+      textrender->render();
+      graphicrender->update();
       game->setInGame(false);
       game->currTeam = 'w';
       return 2;

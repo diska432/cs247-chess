@@ -28,7 +28,7 @@ void TextRender::render() {
     out << i << " ";
   }
   out << "\n";
-  out << (chessboard->isInCheck('w') || chessboard->isInCheck('b') ? "Check!" : " ") << "\n";
+  out << ((chessboard->isInCheck('w') && !chessboard->isCheckmate('w')) || (chessboard->isInCheck('b') && !chessboard->isCheckmate('b')) ? "Check!" : " ") << "\n";
   out << "\n";
 }
 
