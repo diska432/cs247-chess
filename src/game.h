@@ -16,6 +16,7 @@ class Game {
   public: 
     Game();
     void play();
+    void resetGame();
 };
 
 #endif

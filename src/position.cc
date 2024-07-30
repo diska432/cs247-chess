@@ -36,3 +36,9 @@ ostream& operator<<(ostream& out, const Position& p) {
   out << p.toString();
   return out;
 }
+
+bool Position::operator<(const Position& other) const {
+    if (x == other.getX()) return y < other.getY();
+    return x < other.getX();
+}
+

@@ -62,7 +62,7 @@ int Level3::weighOutcomes() {
 }
 
 pair<Position, Position> Level3::getMove() {
-  vector<pair<Position, Position>> valid_moves; // start loc, end loc
+  vector<pair<Position, Position>> valid_moves; 
 
   for (int i = 0; i < 8; i++) {
     for (int j = 0; j < 8; j++) {
@@ -72,7 +72,9 @@ pair<Position, Position> Level3::getMove() {
       if (piece != nullptr && piece->getTeam() == color) {
         vector<Position> moves = piece->getAllMoves(chessboard, q);
         for (Position move : moves) {
-          valid_moves.push_back(make_pair(q, move));
+          if (chessboard->isValidMove(q, move)) {
+            valid_moves.push_back(make_pair(q, move));
+          }
         }
       }
     }
@@ -103,13 +105,6 @@ pair<Position, Position> Level3::getMove() {
 
 
   }
-
-  // cout << "minOutcome: " << minOutcome << endl;
-  // cout << "minimized_moves: ";
-  // for (auto move : minimized_moves) {
-  //   cout << "(" << move.first.toString() << ") -> (" << move.second.toString() << ") ";
-  // }
-  // cout << endl;
 
   srand(time(0));
   int random_variable = (rand() % minimized_moves.size());

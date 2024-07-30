@@ -10,6 +10,12 @@ Game::Game() : chess(make_shared<Chess>()), textrender(make_shared<TextRender>(c
   chess->setGraphicRender(graphicrender);
 };
 
+void Game::resetGame() {
+  chess->resetBoard();
+  graphicrender->updateChessboard(chess->getChessboard());
+  textrender->updateChessboard(chess->getChessboard());
+}
+
 void Game::play() {
 
   for(;;) {
@@ -17,6 +23,8 @@ void Game::play() {
     if (res == 0) {
       chess->getFinalScores();
       break;
+    } else if (res == 2) {
+      resetGame();
     }
 
     if (chess->getInSetup() || chess->getInGame()) { 

@@ -15,3 +15,7 @@ bool Render::isWhite(const Position &p) const {
   }
   return false;
 }
+
+void Render::updateChessboard(shared_ptr<Chessboard> cb) {
+  chessboard = cb;
+}
