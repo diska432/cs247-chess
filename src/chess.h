@@ -35,7 +35,6 @@ class Chess {
     void switchTeam();
 
     void makeMove(Position from, Position to, char promotion);
-    void makeUndo();
 
     // Getter/setter for inSetup flag
     void setInSetup(bool b);
