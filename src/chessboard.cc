@@ -173,7 +173,6 @@ vector<shared_ptr<Position>> Chessboard::makeMove(Position from, Position to, ch
         piece->getTeam() == 'b' && to.getX() == 0) {
       // this is a pawn that is now located on a back rank
       shared_ptr<Piece> promotedPawn;
-      cout << "WE HERE NOW\n";
       switch (promotion) {
         case('q'):
           promotedPawn = make_shared<Queen>(piece->getTeam());
