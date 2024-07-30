@@ -39,7 +39,6 @@ pair<Position, Position> Level2::getMove() {
               
               vector<Position> sMoves = piece->getAllMoves(chessboard, move);
               for (Position sMove : sMoves) {
-                cout << sMove.toString() << endl;
                 if (chessboard->isValidMove(q, move) && chessboard->isValidMove(move, sMove)) {
                   second_order_moves.push_back(make_pair(make_pair(q, move), sMove));
                 }

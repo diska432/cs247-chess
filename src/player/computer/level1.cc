@@ -29,12 +29,6 @@ pair<Position, Position> Level1::getMove() {
 
     }
   }
-
-  for (auto move : valid_moves) {
-    Position from = move.first;
-    Position to = move.second;
-    cout << from.toString()  << " | " << to.toString() << endl;
-  }
   
   srand(time(0));
   int random_variable = (rand() % valid_moves.size());

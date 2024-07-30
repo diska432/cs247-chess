@@ -81,19 +81,6 @@ void Chess::makeMove(Position from, Position to, char promotion) {
   switchTeam();
 }
 
-void Chess::makeUndo() {
-  if (moves->size() == 0) {
-    // No moves made, so we cannot undo anymore
-    throw InvalidMoveException();
-  } else {
-    // we should be able to do an undo
-    cout << "we still have to implement this\n";
-    // AtomicMove lastMove = moves->top();
-    // moves->pop();
-    // stack<Move> sequence = lastMove.moveStack;
-  }
-}
-
 void Chess::resign() {
   scores[currTeam == 'w' ? 1 : 0]++;
   if(currTeam == 'w') {
