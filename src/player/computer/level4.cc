@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ctime>
 #include <map>
+#include <algorithm>
 
 using namespace std;
 
@@ -91,7 +92,7 @@ int Level4::weighOutcomes() {
     }
   }
 
-  return minWeight + minSOrder;
+  return min(minWeight, minSOrder);
 }
 
 pair<Position, Position> Level4::getMove() {
@@ -114,7 +115,7 @@ pair<Position, Position> Level4::getMove() {
   }
 
   vector<pair<Position, Position>> minimized_moves;
-  int minOutcome = INT_MIN;
+  int maxOutcome = INT_MIN;
 
   for (auto move : valid_moves) {
     auto from = chessboard->getSquare(move.first);
@@ -123,27 +124,27 @@ pair<Position, Position> Level4::getMove() {
     chessboard->placePiece(move.second, from);
 
     int outcome = weighOutcomes();
+    
+    if (chessboard->isInCheck(chessboard->opponentTeam(color))) {
+      outcome += 2;
+    }
 
-    if (outcome == minOutcome) {
+    if (from->getSymbol() == 'p' && (color == 'w' && move.second.getX() == 7 || color == 'b' && move.second.getX() == 0)) {
+      outcome += 10;
+    }
+
+    if (outcome == maxOutcome) {
       minimized_moves.push_back(move);
-    } else if (outcome > minOutcome) {
-      minOutcome = outcome;
+    } else if (outcome > maxOutcome) {
+      maxOutcome = outcome;
       minimized_moves.clear();
       minimized_moves.push_back(move);
     }
-
-    cout << "From: " << move.first.toString() << " To: " << move.second.toString() << " : " << minOutcome << endl;
 
     chessboard->clearSquare(move.second);
     chessboard->placePiece(move.first, from);
     chessboard->placePiece(move.second, to);
   }
-
-  // cout << "Minimized Moves:" << endl;
-  // for (auto move : minimized_moves) {
-  //   cout << "From: " << move.first.toString() << " To: " << move.second.toString() << " : " << minOutcome << endl;
-  // }
-     
 
   srand(time(0));
   int random_variable = (rand() % minimized_moves.size());
