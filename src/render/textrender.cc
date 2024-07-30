@@ -26,12 +26,13 @@ void TextRender::render() {
     out << "\n";
   }
   out << "\n";
-
   out << "  ";
   for (char i='a'; i<='h'; i++) {
     out << i << " ";
   }
-  out << "\n\n";
+  out << "\n";
+  out << (chessboard->isInCheck('w') || chessboard->isInCheck('b') ? "Check!" : " ") << "\n";
+  out << "\n";
 }
 
 string TextRender::getChar(const shared_ptr<Piece>& piece) const {
@@ -58,6 +59,9 @@ string TextRender::getChar(const shared_ptr<Piece>& piece) const {
       case 'k':
         return "♔";
         break;
+      case 'f':
+        return "F";
+        break;
       default:
         return " ";
     }
@@ -80,6 +84,9 @@ string TextRender::getChar(const shared_ptr<Piece>& piece) const {
         break;
       case 'k':
         return "♚";
+        break;
+      case 'f':
+        return "f";
         break;
       default:
         return " ";

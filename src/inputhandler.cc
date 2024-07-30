@@ -7,6 +7,7 @@
 #include "piece/bishop.h"
 #include "piece/queen.h"
 #include "piece/king.h"
+#include "piece/princess.h"
 #include "chess.h"
 #include "render/textrender.h"
 #include "render/graphicrender.h"
@@ -80,6 +81,10 @@ void InputHandler::enterSetup() {
         case 'k': 
         case 'K':
           piece = make_shared<King>(team);
+          break;
+        case 'f':
+        case 'F':
+          piece = make_shared<Princess>(team);
           break;
         default:
           cout << "Invalid piece type\n";
@@ -169,7 +174,14 @@ int InputHandler::handleInput() {
     }
     
   } else if (op1 == "resign") {
-    cout << "someonen resigning type sh\n";
+    if(!game->getInGame()) {
+      cout << "Cannot resign, game has not been started\n";
+      return 1;
+    }
+    game->resign();
+    game->setInGame(false);
+    return 1;
+
   } else if (op1 == "move") {
     if (!game->getInGame()) {
       cout << "Cannot move, game has not been started\n";
@@ -190,8 +202,20 @@ int InputHandler::handleInput() {
     } catch (exception& e) {
       cout << "Invalid move. Try again.\n";
     }
-  } 
-  else if (op1 == "game") {
+
+    std::string winner = game->getWinner();
+    if(winner != "") {
+      if(winner == "Stalemate" ) {
+        cout << "Stalemate!" << endl;
+      } else {
+        cout << "Checkmate! " << winner << " wins!\n";
+      }
+      game->setInGame(false);
+      return 1;
+    }
+    // cout << "someone moving type shi\n";
+    // game->getChessboard()->makeMove();
+  } else if (op1 == "game") {
     if (game->getInGame()) {
       cout << "You are already in a game. Please finish the current game before starting a new one.\n";
     }
