@@ -8,13 +8,14 @@ class Position;
 class Render {
   protected:
     // Ensure the memory and chessboard do not change in respect to the Render class
-    const std::shared_ptr<Chessboard> const chessboard;
+    std::shared_ptr<Chessboard> chessboard;
     // determine which team 
     bool isWhite(const Position& p) const;
   public:
     Render(std::shared_ptr<Chessboard> cb);
     virtual ~Render(); // virtual destructor to make it an abstract class
     virtual void render() = 0;
+    void updateChessboard(std::shared_ptr<Chessboard> cb);
 };
 
 #endif

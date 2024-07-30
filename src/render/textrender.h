@@ -7,7 +7,7 @@
 #include "../chess.h"
 #include "../piece/piece.h"
 
-class TextRender : Render {
+class TextRender : public Render {
   private:
     std::ostream &out;
   public:

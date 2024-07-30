@@ -16,6 +16,10 @@ shared_ptr<GraphicRender> Chess::getGraphicRender() const {
   return graphicrender;
 }
 
+void Chess::resetBoard() {
+  chessboard = make_shared<Chessboard>(Chessboard()); // Chessboard();
+}
+
 void Chess::setGraphicRender(shared_ptr<GraphicRender> gr) {
   graphicrender = gr;
 }

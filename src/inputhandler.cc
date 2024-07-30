@@ -180,7 +180,7 @@ int InputHandler::handleInput() {
     }
     game->resign();
     game->setInGame(false);
-    return 1;
+    return 2;
 
   } else if (op1 == "move") {
     if (!game->getInGame()) {
@@ -211,7 +211,7 @@ int InputHandler::handleInput() {
         cout << "Checkmate! " << winner << " wins!\n";
       }
       game->setInGame(false);
-      return 1;
+      return 2;
     }
     // cout << "someone moving type shi\n";
     // game->getChessboard()->makeMove();

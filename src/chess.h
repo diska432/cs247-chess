@@ -29,6 +29,8 @@ class Chess {
     std::shared_ptr<GraphicRender> getGraphicRender() const;
     void setGraphicRender(std::shared_ptr<GraphicRender> gr);
 
+    void resetBoard();
+
     char currTeam = 'w';
     std::map<char, std::shared_ptr<Player>> players; 
 
