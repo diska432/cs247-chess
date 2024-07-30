@@ -176,6 +176,7 @@ int InputHandler::handleInput() {
     }
     game->resign();
     game->setInGame(false);
+    game->currTeam = 'w';
     return 2;
 
   } else if (op1 == "move") {
@@ -207,6 +208,7 @@ int InputHandler::handleInput() {
         cout << "Checkmate! " << winner << " wins!\n";
       }
       game->setInGame(false);
+      game->currTeam = 'w';
       return 2;
     }
   } else if (op1 == "game") {
