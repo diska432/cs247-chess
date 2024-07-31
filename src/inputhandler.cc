@@ -146,6 +146,9 @@ void InputHandler::enterSetup() {
       } else if (!game->getChessboard()->validPawnPlacement()) {
         cout << "Invalid game configuration: pawn must not be on the back ranks\n";
         continue;
+      } else if (game->getChessboard()->isInCheck('w') || game->getChessboard()->isInCheck('b')) {
+        cout << "Invalid game configuration: a king must not be in check\n";
+        continue;
       }
       game->setInSetup(false);
       cout << "You have successfully exited setup mode\n";
