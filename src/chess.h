@@ -6,10 +6,11 @@
 #include "chessboard.h"
 #include "position.h"
 #include "player/player.h"
-#include "render/graphicrender.h"
+// #include "render/graphicrender.h"
 #include <map>
 
 class GraphicRender;
+class Chessboard;
 
 class Chess {
   private:
