@@ -319,7 +319,6 @@ bool Chessboard::isStalemate(char team) {
   }
 
   if (totalValidMoves.size() == 0) {
-    std::cout<<"Stalemate! Game over\n";
     return true;
   }
 
