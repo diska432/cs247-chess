@@ -28,7 +28,11 @@ void TextRender::render() {
     out << i << " ";
   }
   out << "\n";
-  out << ((chessboard->isInCheck('w') && !chessboard->isCheckmate('w')) || (chessboard->isInCheck('b') && !chessboard->isCheckmate('b')) ? "Check!" : " ") << "\n";
+  if(chessboard->isInCheck('w') && !chessboard->isCheckmate('w')) {
+    out << "White is in check." << endl;
+  } else if(chessboard->isInCheck('b') && !chessboard->isCheckmate('b')) {
+    out << "Black is in check." << endl;
+  }
   out << "\n";
 }
 
